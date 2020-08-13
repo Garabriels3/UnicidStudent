@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/blue_unicid">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="@dimen/two_hundred_four_value"
+                android:layout_height="@dimen/two_hundred_four_value"
+                android:layout_marginTop="@dimen/sixteen_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_logo_unicid" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/two_hundred_twenty_eight_value"
+                android:background="@drawable/shape_card_onduled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eighty_eight_value"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="@string/student_area"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue_unicid"
+                    android:textSize="@dimen/eighteen_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="@dimen/zero_value"
+                    android:layout_height="@dimen/fifty_two_size"
+                    android:layout_marginStart="@dimen/fifty_two_value"
+                    android:layout_marginTop="@dimen/fifty_two_value"
+                    android:layout_marginEnd="@dimen/fifty_two_value"
+                    android:background="@drawable/shape_round_corners"
+                    android:hint="@string/type_rgm"
+                    android:padding="@dimen/sixteen_value"
+                    android:textColor="@color/blue_unicid"
+                    android:textColorHint="@color/blue_unicid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="@dimen/zero_value"
+                    android:layout_height="@dimen/fifty_two_size"
+                    android:layout_marginStart="@dimen/fifty_two_value"
+                    android:layout_marginTop="@dimen/sixteen_value"
+                    android:layout_marginEnd="@dimen/fifty_two_value"
+                    android:autofillHints=""
+                    android:background="@drawable/shape_round_corners"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/sixteen_value"
+                    android:textColor="@color/blue_unicid"
+                    android:textColorHint="@color/blue_unicid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+                <Button
+                    android:id="@+id/bt_login"
+                    android:layout_width="@dimen/zero_value"
+                    android:layout_height="@dimen/fifty_two_size"
+                    android:layout_marginStart="@dimen/fifty_two_value"
+                    android:layout_marginTop="@dimen/thirty_two_value"
+                    android:layout_marginEnd="@dimen/fifty_two_value"
+                    android:background="@drawable/shape_round_corners_gradient"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+                <Button
+                    android:id="@+id/bt_register"
+                    android:layout_width="@dimen/zero_value"
+                    android:layout_height="@dimen/fifty_two_size"
+                    android:layout_marginStart="@dimen/fifty_two_value"
+                    android:layout_marginTop="@dimen/sixteen_value"
+                    android:layout_marginEnd="@dimen/fifty_two_value"
+                    android:background="@drawable/shape_round_corners"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/blue_unicid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_login" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/b_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="top"
+                    app:constraint_referenced_ids="v_barrier, v_barrier" />
+
+                <View
+                    android:id="@+id/v_barrier"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/forty_value"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_register" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

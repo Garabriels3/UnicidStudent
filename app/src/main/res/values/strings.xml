@@ -1,1 +1,1 @@
-<resources>    <string name="app_name">UnicidApp</string></resources>
+<resources>    <string name="app_name">Unicid</string>    <string name="login">Login</string>    <string name="register">Cadastrar</string>    <string name="hint_password">Digite sua senha</string>    <string name="hint_email">Digite seu email</string>    <string name="warn">!</string>    <string name="forgot_password">Recuperar senha</string>    <string name="student_area">Área do Aluno</string>    <string name="type_rgm">Digite seu RGM</string></resources>

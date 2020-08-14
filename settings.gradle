@@ -1,1 +1,1 @@
-include ':app'rootProject.name = "UnicidApp"
+include ':domain'include ':data'include ':app'rootProject.name = "UnicidApp"

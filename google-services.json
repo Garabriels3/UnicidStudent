@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "456510589368",
+    "firebase_url": "https://unicid-student.firebaseio.com",
+    "project_id": "unicid-student",
+    "storage_bucket": "unicid-student.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456510589368:android:ad8a43ffc8c690ae71a74d",
+        "android_client_info": {
+          "package_name": "br.com.unicidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456510589368-apmc9d63207j3hkh5f2nh0k9o24sai7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJD_SKe2tKb_wHU3jj9s9iiIH6Ip1n9fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456510589368-apmc9d63207j3hkh5f2nh0k9o24sai7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

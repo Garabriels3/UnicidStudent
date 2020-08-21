@@ -18,6 +18,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
+        binding.btLogin.setOnClickListener {
+            val email = binding.etEmail.text
+            val password = binding.etPassword.text
+            if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+                viewModel.createAccount(email.toString(), password.toString())
+            }
+        }
     }
 
     companion object {

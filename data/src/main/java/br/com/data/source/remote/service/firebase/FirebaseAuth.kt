@@ -17,4 +17,14 @@ class FirebaseAuth {
             }
         }
     }
+
+    fun loginAccount(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d(TAG, "Login feito com sucesso")
+            } else {
+                Log.w(TAG, "Falha no login!", task.exception)
+            }
+        }
+    }
 }

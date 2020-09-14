@@ -1,5 +1,8 @@
 package br.com.domain.usecase.login
 
+import br.com.domain.entity.FirebaseResponse
+
 interface LoginUseCase {
-    fun createAccount(email: String, password: String)
+    fun loginAccount(email: String, password: String): FirebaseResponse
+    fun createAccount(email: String, password: String): FirebaseResponse
 }

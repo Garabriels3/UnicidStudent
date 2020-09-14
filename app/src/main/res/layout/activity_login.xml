@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,16 +12,17 @@
             type="br.com.unicidapp.ui.login.LoginViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:animateLayoutChanges="true"
-            android:background="@color/blue_unicid">
+            android:background="@color/blue_unicid"
+            tools:context=".ui.login.LoginActivity">
 
             <ImageView
                 android:id="@+id/iv_logo"
@@ -66,11 +68,13 @@
                     android:layout_marginEnd="@dimen/fifty_two_value"
                     android:background="@drawable/shape_round_corners"
                     android:hint="@string/type_rgm"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onUsernameTextChanged(text)}"
                     android:padding="@dimen/sixteen_value"
                     android:textColor="@color/blue_unicid"
                     android:textColorHint="@color/blue_unicid"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -85,6 +89,7 @@
                     android:background="@drawable/shape_round_corners"
                     android:hint="@string/hint_password"
                     android:inputType="textPassword"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onPasswordTextChanged(text)}"
                     android:padding="@dimen/sixteen_value"
                     android:textColor="@color/blue_unicid"
                     android:textColorHint="@color/blue_unicid"
@@ -101,6 +106,7 @@
                     android:layout_marginEnd="@dimen/fifty_two_value"
                     android:background="@drawable/shape_round_corners_gradient"
                     android:fontFamily="@font/montserrat_semi_bold"
+                    android:onClick="@{() -> viewModel.loginAccount()}"
                     android:text="@string/login"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -139,5 +145,5 @@
                     app:layout_constraintTop_toBottomOf="@+id/bt_register" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </layout>

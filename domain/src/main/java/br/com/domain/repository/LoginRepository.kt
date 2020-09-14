@@ -1,5 +1,8 @@
 package br.com.domain.repository
 
+import br.com.domain.entity.FirebaseResponse
+
 interface LoginRepository {
-    fun createAccount(email: String, password: String)
+    fun loginAccount(email: String, password: String): FirebaseResponse
+    fun createAccount(email: String, password: String): FirebaseResponse
 }

@@ -2,6 +2,8 @@ package br.com.unicidapp.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import br.com.domain.entity.SubTest
+import br.com.domain.entity.User
 import br.com.domain.usecase.login.LoginUseCase
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
 
@@ -38,5 +40,13 @@ class LoginViewModel(
     fun loginAccount() {
         _hideKeyboard.value = true
         loginUseCase.loginAccount(loginForm.userName, loginForm.password)
+    }
+
+    fun createUser() {
+        val subTest = SubTest("Matematica", listOf("1", "2", "3"))
+        val userMock: User = User(
+            "Gabriel", "21285136", "Analise e Desenvolvimento de Sistemas", "A", "Adoleta", subTest
+        )
+        loginUseCase.createAccount(userMock)
     }
 }

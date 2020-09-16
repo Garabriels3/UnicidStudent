@@ -1,7 +1,8 @@
 package br.com.data.repository
 
-import br.com.data.source.remote.LoginRemoteDataSource
+import br.com.data.source.remote.loginDataSource.LoginRemoteDataSource
 import br.com.domain.entity.FirebaseResponse
+import br.com.domain.entity.User
 import br.com.domain.repository.LoginRepository
 
 class LoginRepositoryImpl(
@@ -12,7 +13,7 @@ class LoginRepositoryImpl(
         return loginRemoteDataSource.loginAccount(email, password)
     }
 
-    override fun createAccount(email: String, password: String): FirebaseResponse {
-        return loginRemoteDataSource.createAccount(email, password)
+    override fun createAccount(user: User) {
+        loginRemoteDataSource.createAccount(user)
     }
 }

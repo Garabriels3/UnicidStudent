@@ -3,6 +3,7 @@ package br.com.data.source.remote.service.firebase
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseAuth {
 

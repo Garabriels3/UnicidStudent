@@ -1,6 +1,7 @@
 package br.com.domain.usecase.login
 
 import br.com.domain.entity.FirebaseResponse
+import br.com.domain.entity.User
 import br.com.domain.repository.LoginRepository
 
 class LoginUseCaseImpl(
@@ -11,7 +12,7 @@ class LoginUseCaseImpl(
         return loginRepository.loginAccount(email, password)
     }
 
-    override fun createAccount(email: String, password: String): FirebaseResponse {
-        return loginRepository.createAccount(email, password)
+    override fun createAccount(user: User) {
+        loginRepository.createAccount(user)
     }
 }

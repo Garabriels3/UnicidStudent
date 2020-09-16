@@ -122,6 +122,7 @@
                     android:layout_marginEnd="@dimen/fifty_two_value"
                     android:background="@drawable/shape_round_corners"
                     android:fontFamily="@font/montserrat_semi_bold"
+                    android:onClick="@{() -> viewModel.createUser()}"
                     android:text="@string/forgot_password"
                     android:textColor="@color/blue_unicid"
                     app:layout_constraintEnd_toEndOf="parent"

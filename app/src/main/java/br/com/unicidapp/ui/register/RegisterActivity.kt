@@ -7,6 +7,7 @@ import br.com.domain.entity.SelectionItem
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityRegisterBinding
 import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
+import br.com.unicidapp.utils.extensions.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -18,6 +19,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
         binding.viewModel = viewModel
+        setupObservables()
+        viewModel.onCreate()
+    }
+
+    private fun setupObservables() {
+        bind(viewModel.openCourseNameSheet, ::openSchoolLevelSheet)
     }
 
     private fun openSchoolLevelSheet(listSchoolLevel: List<SelectionItem>) {
@@ -25,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
             listSchoolLevel, "Selecione seu curso"
         ) { option ->
             viewModel.setCourseNameChanged(option)
-            binding.courseName = option.find { it.isSelected }?.description
+            binding.courseName = option.find { it.isSelected }?.id
         }.also { it.show(supportFragmentManager, EMPTY_TEXT) }
     }
 

@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/sixteen_value"
                 android:paddingEnd="@dimen/zero_value"
-                android:text="@{selectionItem.description}"
+                android:text="@{selectionItem.id}"
                 android:textColor="@drawable/radio_button_color"
                 android:textSize="@dimen/sixteen_size"
                 android:theme="@style/radioTheme"

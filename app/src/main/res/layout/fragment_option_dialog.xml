@@ -17,7 +17,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/tv_title"
@@ -54,7 +55,7 @@
                 android:layout_height="@dimen/forty_value"
                 android:layout_marginTop="@dimen/eighty_four_value"
                 android:layout_marginBottom="@dimen/thirty_two_value"
-                android:enabled="false"
+                android:background="@drawable/circle_green_button"
                 android:onClick="@{() -> viewModel.onConfirmClick()}"
                 android:text="@string/selected"
                 android:textColor="@color/white"

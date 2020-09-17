@@ -1,7 +1,5 @@
 package br.com.unicidapp.ui.optionDialog
 
-import br.com.domain.entity.SelectionItem
-import br.com.unicidapp.R
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +8,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.domain.entity.SelectionItem
+import br.com.unicidapp.R
 import br.com.unicidapp.databinding.FragmentOptionDialogBinding
 import br.com.unicidapp.utils.extensions.bind
-import br.com.unicidapp.utils.extensions.disableButton
-import br.com.unicidapp.utils.extensions.enableButton
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -74,7 +72,6 @@ class OptionDialogFragment(
     }
 
     private fun subscribeUi() {
-        bind(viewModel.enableButton, ::enableButton)
         bind(viewModel.onConfirmOption) { onConfirmClick() }
     }
 
@@ -90,19 +87,6 @@ class OptionDialogFragment(
 
     private fun onOptionLoaded(items: List<SelectionItem>) {
         adapterOption.submitList(items.toMutableList())
-        enableButton(items.find { it.isSelected }?.isSelected ?: false)
-    }
-
-    private fun enableButton(isEnabled: Boolean) {
-        binding.btConfirm.isEnabled
-        binding.btConfirm.apply {
-            this.isEnabled = isEnabled
-            if (isEnabled) {
-                this.enableButton()
-            } else {
-                this.disableButton()
-            }
-        }
     }
 
     private fun onConfirmClick() {

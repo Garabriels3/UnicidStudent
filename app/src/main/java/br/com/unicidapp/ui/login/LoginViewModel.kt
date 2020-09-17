@@ -41,12 +41,4 @@ class LoginViewModel(
         _hideKeyboard.value = true
         loginUseCase.loginAccount(loginForm.userName, loginForm.password)
     }
-
-    fun createUser() {
-        val subTest = SubTest("Matematica", listOf("1", "2", "3"))
-        val userMock: User = User(
-            "Gabriel", "21285136", "Analise e Desenvolvimento de Sistemas", "A", "Adoleta", subTest
-        )
-        loginUseCase.createAccount(userMock)
-    }
 }

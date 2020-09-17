@@ -23,7 +23,5 @@ class LoginRemoteDataSourceImpl(
         TODO("Not yet implemented")
     }
 
-    override fun createAccount(user: br.com.domain.entity.User) {
-        userDao.createAccountStore(user)
-    }
+
 }

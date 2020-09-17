@@ -1,12 +1,12 @@
 package br.com.domain.entity
 
 data class User(
-    val name: String,
-    val rgm: String,
-    val courseName: String,
-    val group: String,
-    val banana: String,
-    val subTest: SubTest
+    var id: String,
+    var email: String,
+    var name: String,
+    var rgm: String,
+    var courseName: String,
+    var semester: String
 )
 
 data class SubTest(

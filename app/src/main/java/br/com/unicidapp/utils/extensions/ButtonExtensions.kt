@@ -1,20 +1,21 @@
 package br.com.unicidapp.utils.extensions
 
 import android.widget.Button
+import androidx.annotation.DrawableRes
 import br.com.unicidapp.R
 
-fun Button.isEnabled(boolean: Boolean) {
-    if (boolean) enableButton() else disableButton()
+fun Button.isEnabled(boolean: Boolean,  resTrue: Int, resFalse: Int) {
+    if (boolean) enableButton(resTrue) else disableButton(resFalse)
 }
 
-fun Button.enableButton() {
+fun Button.enableButton(drawableRes: Int) {
     isEnabled = true
     isClickable = true
-    background = context.getContextCompactDrawable(R.drawable.circle_green_button)
+    background = context.getContextCompactDrawable(drawableRes)
 }
 
-fun Button.disableButton() {
+fun Button.disableButton(drawableRes: Int) {
     isEnabled = false
     isClickable = false
-    background = context.getContextCompactDrawable(R.drawable.circle_gray_button)
+    background = context.getContextCompactDrawable(drawableRes)
 }

@@ -15,10 +15,12 @@ class RegisterViewModel(
 
     val openCourseNameSheet: LiveData<List<SelectionItem>> get() = _openCourseNameSheet
     val enableRegisterButton: LiveData<Boolean> get() = _enableRegisterButton
+    val errorDialog: LiveData<Boolean> get() = _errorDialog
 
     private val _openCourseNameSheet: FlexibleLiveData<List<SelectionItem>> = FlexibleLiveData()
     private val _listCourseNameOptions: FlexibleLiveData<List<SelectionItem>> = FlexibleLiveData()
     private val _enableRegisterButton: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
+    private val _errorDialog: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
     private var registerForm = RegisterForm()
 
@@ -33,6 +35,7 @@ class RegisterViewModel(
     fun setCourseNameChanged(options: List<SelectionItem>?) {
         options?.let {
             registerForm.courseName = it.find { item -> item.isSelected }?.id.toString()
+            _enableRegisterButton.value = registerForm.shouldEnableButton()
         }
         _listCourseNameOptions.value = options
     }
@@ -65,10 +68,13 @@ class RegisterViewModel(
     fun createAccount() {
         CoroutineScope(Dispatchers.Main).launch {
             val result =
-                registerUseCase.createAccount(registerForm.email, registerForm.password).userUid
-            result?.let {
-                registerForm.id = it
+                registerUseCase.createAccount(registerForm.email, registerForm.password)
+            result.let {
+                registerForm.id = it.userUid
                 registerUseCase.createAccountStore(registerForm.build())
+                if (it.isSuccess()) {
+                    _errorDialog.value = true
+                }
             }
         }
     }

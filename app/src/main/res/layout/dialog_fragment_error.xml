@@ -1,0 +1,79 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="dialogData"
+            type="br.com.unicidapp.utils.parcelable.DialogJoinJobData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_card_background"
+        android:minWidth="300dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty_four_value"
+            android:text="@string/attention_label"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="@dimen/twenty_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBody"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/forty_eight_value"
+            android:layout_marginTop="@dimen/twenty_four_value"
+            android:layout_marginEnd="@dimen/forty_eight_value"
+            android:lines="2"
+            android:text="@string/error_register_description"
+            android:textAlignment="center"
+            android:textColor="@color/scorpion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <Button
+            android:id="@+id/btn_yes"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="@dimen/thirty_two_value"
+            android:layout_marginStart="@dimen/hundred_four_value"
+            android:layout_marginTop="@dimen/thirty_six_value"
+            android:layout_marginEnd="@dimen/hundred_four_value"
+            android:background="@drawable/circle_green_button"
+            android:onClick="@{() -> dialogData.action.invoke()}"
+            android:text="@string/ok_label"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBody" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/b_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="v_barrier, v_barrier" />
+
+        <View
+            android:id="@+id/v_barrier"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/forty_value"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_yes" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

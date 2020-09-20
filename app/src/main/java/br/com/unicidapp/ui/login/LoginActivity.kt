@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityLoginBinding
+import br.com.unicidapp.ui.register.RegisterActivity
 import br.com.unicidapp.utils.applyDrawable
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.getContextCompactDrawable
 import br.com.unicidapp.utils.extensions.hideKeyboard
+import br.com.unicidapp.utils.extensions.isEnabled
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         bind(viewModel.enableSignInButton, ::shouldEnableSignInButton)
         bind(viewModel.enableDrawableFieldUserName, ::applyColorLoginEmailBorder)
         bind(viewModel.enableDrawableFieldPassword, ::applyColorLoginPasswordBorder)
+        bind(viewModel.onStartRegister) { RegisterActivity.start(this) }
         bind(viewModel.hideKeyboard) { hideKeyboard() }
     }
 
@@ -38,8 +41,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun applyButtonLoginBackground(enable: Boolean) {
-        binding.btLogin.background =
-            getContextCompactDrawable(if (enable) R.drawable.shape_round_corners_gradient else R.drawable.circle_shape_gray)
+        binding.btLogin.isEnabled(
+            enable,
+            R.drawable.shape_round_corners_gradient,
+            R.drawable.circle_shape_gray
+        )
     }
 
     private fun applyColorLoginEmailBorder(enable: Boolean) {

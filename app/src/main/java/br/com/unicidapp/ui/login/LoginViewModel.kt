@@ -15,6 +15,7 @@ class LoginViewModel(
     val enableDrawableFieldUserName: LiveData<Boolean> get() = _enableDrawableFieldUserName
     val enableDrawableFieldPassword: LiveData<Boolean> get() = _enableDrawableFieldPassword
     val hideKeyboard: LiveData<Boolean> get() = _hideKeyboard
+    val onStartRegister: LiveData<Boolean> get() = _onStartRegister
 
     private val _enableLogInButton: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
     private val _enableDrawableFieldUserName: FlexibleLiveData<Boolean> =
@@ -22,6 +23,7 @@ class LoginViewModel(
     private val _enableDrawableFieldPassword: FlexibleLiveData<Boolean> =
         FlexibleLiveData()
     private val _hideKeyboard: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _onStartRegister: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
     private var loginForm = LoginForm()
 
@@ -40,5 +42,9 @@ class LoginViewModel(
     fun loginAccount() {
         _hideKeyboard.value = true
         loginUseCase.loginAccount(loginForm.userName, loginForm.password)
+    }
+
+    fun navigateToRegister() {
+        _onStartRegister.value = true
     }
 }

@@ -1,15 +1,13 @@
 package br.com.domain.usecase.login
 
 import br.com.domain.entity.FirebaseResponse
-import br.com.domain.entity.SelectionItem
-import br.com.domain.entity.User
 import br.com.domain.repository.LoginRepository
 
 class LoginUseCaseImpl(
     private val loginRepository: LoginRepository
 ) : LoginUseCase {
 
-    override fun loginAccount(email: String, password: String): FirebaseResponse {
+    override suspend fun loginAccount(email: String, password: String): FirebaseResponse {
         return loginRepository.loginAccount(email, password)
     }
 }

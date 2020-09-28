@@ -68,6 +68,7 @@ class CustomDialog : DialogFragment() {
             arguments.putParcelable(DIALOG_JOIN_JOB_EXTRA, dialogJoinJobData)
             return CustomDialog().apply {
                 this.arguments = arguments
+
             }
         }
     }

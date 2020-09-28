@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,54 +12,62 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="300dp"
+        android:layout_width="@dimen/three_hundred_value"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_card_background"
-        android:minWidth="300dp"
+        android:minWidth="@dimen/three_hundred_value"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tv_title"
             android:layout_width="@dimen/zero_value"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/twenty_four_value"
-            android:text="@string/attention_label"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@{dialogData.title}"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textColor="@color/red"
             android:textSize="@dimen/twenty_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
 
         <TextView
-            android:id="@+id/tvBody"
+            android:id="@+id/tv_body"
             android:layout_width="@dimen/zero_value"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/forty_eight_value"
             android:layout_marginTop="@dimen/twenty_four_value"
             android:layout_marginEnd="@dimen/forty_eight_value"
+            android:fontFamily="@font/poppins_regular"
             android:lines="2"
-            android:text="@string/error_register_description"
+            android:text="@{dialogData.description}"
             android:textAlignment="center"
             android:textColor="@color/scorpion"
+            android:textSize="@dimen/twenty_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="Description" />
 
         <Button
             android:id="@+id/btn_yes"
             android:layout_width="@dimen/zero_value"
-            android:layout_height="@dimen/thirty_two_value"
-            android:layout_marginStart="@dimen/hundred_four_value"
+            android:layout_height="@dimen/forty_four_value"
+            android:layout_marginStart="@dimen/ninety_two_value"
             android:layout_marginTop="@dimen/thirty_six_value"
-            android:layout_marginEnd="@dimen/hundred_four_value"
+            android:layout_marginEnd="@dimen/ninety_two_value"
             android:background="@drawable/circle_green_button"
+            android:fontFamily="@font/poppins_regular"
             android:onClick="@{() -> dialogData.action.invoke()}"
             android:text="@string/ok_label"
             android:textColor="@color/white"
+            android:textSize="@dimen/sixteen_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBody" />
+            app:layout_constraintTop_toBottomOf="@id/tv_body" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/b_barrier"

@@ -36,6 +36,30 @@ class RegisterForm {
         return (semester.isNotEmpty())
     }
 
+    fun shouldChangeDrawableBorderFieldUserName(): Boolean {
+        return nameIsValid()
+    }
+
+    fun shouldChangeDrawableBorderFieldEmail(): Boolean {
+        return emailIsValid()
+    }
+
+    fun shouldChangeDrawableBorderFieldPassword(): Boolean {
+        return passwordIsValid()
+    }
+
+    fun shouldChangeDrawableBorderFieldRgm(): Boolean {
+        return rgmIsValid()
+    }
+
+    fun shouldChangeDrawableBorderFieldCourseName(): Boolean {
+        return courseNameIsValid()
+    }
+
+    fun shouldChangeDrawableBorderFieldSemester(): Boolean {
+        return semesterIsValid()
+    }
+
     fun shouldEnableButton(): Boolean {
         return nameIsValid() && rgmIsValid() && courseNameIsValid()
                 && semesterIsValid() && emailIsValid() && passwordIsValid()

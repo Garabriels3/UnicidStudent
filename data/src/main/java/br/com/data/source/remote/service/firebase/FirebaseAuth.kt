@@ -3,12 +3,10 @@ package br.com.data.source.remote.service.firebase
 import android.content.ContentValues.TAG
 import android.util.Log
 import br.com.domain.entity.FirebaseResponse
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 
 class FirebaseAuth {
 
@@ -29,13 +27,12 @@ class FirebaseAuth {
         return FirebaseResponse(userUid = user)
     }
 
-    fun loginAccount(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d(TAG, "Login feito com sucesso")
-            } else {
-                Log.w(TAG, "Falha no login!", task.exception)
-            }
+    suspend fun loginAccount(email: String, password: String): FirebaseResponse {
+        return try {
+            val user = auth.signInWithEmailAndPassword(email, password).await().user?.uid
+            FirebaseResponse(userUid = user)
+        } catch (e: Exception) {
+            FirebaseResponse(errorMessage = e.toString())
         }
     }
 }

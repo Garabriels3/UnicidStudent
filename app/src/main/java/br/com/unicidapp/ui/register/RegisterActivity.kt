@@ -12,6 +12,7 @@ import br.com.unicidapp.databinding.ActivityRegisterBinding
 import br.com.unicidapp.ui.component.CustomDialog
 import br.com.unicidapp.ui.component.DialogState
 import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
+import br.com.unicidapp.utils.applyDrawable
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.hideKeyboard
 import br.com.unicidapp.utils.extensions.isEnabled
@@ -42,6 +43,12 @@ class RegisterActivity : AppCompatActivity() {
         bind(viewModel.openCourseNameSheet, ::openSchoolLevelSheet)
         bind(viewModel.enableRegisterButton, ::enableNextStepClick)
         bind(viewModel.errorDialog, ::onErrorRegister)
+        bind(viewModel.userNameBorderColor, ::applyColorNameBorder)
+        bind(viewModel.passwordBorderColor, ::applyColorPasswordBorder)
+        bind(viewModel.emailBorderColor, ::applyColorEmailBorder)
+        bind(viewModel.rgmBorderColor, ::applyColorRgmBorder)
+        bind(viewModel.semesterBorderColor, ::applyColorSemesterBorder)
+        bind(viewModel.courseNameBorderColor, ::applyColorCourseNameBorder)
     }
 
     private fun openSchoolLevelSheet(listSchoolLevel: List<SelectionItem>) {
@@ -72,13 +79,61 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun applyColorEmailBorder(enable: Boolean) {
+        applyDrawable(
+            binding.etEmail,
+            if (enable) R.drawable.shape_round_corners else R.drawable.shape_round_corners_red,
+            this
+        )
+    }
+
+    private fun applyColorNameBorder(enable: Boolean) {
+        applyDrawable(
+            binding.etName,
+            if (enable) R.drawable.shape_round_corners else R.drawable.shape_round_corners_red,
+            this
+        )
+    }
+
+    private fun applyColorPasswordBorder(enable: Boolean) {
+        applyDrawable(
+            binding.etPassword,
+            if (enable) R.drawable.shape_round_corners else R.drawable.shape_round_corners_red,
+            this
+        )
+    }
+
+    private fun applyColorRgmBorder(enable: Boolean) {
+        applyDrawable(
+            binding.etRgm,
+            if (enable) R.drawable.shape_round_corners else R.drawable.shape_round_corners_red,
+            this
+        )
+    }
+
+    private fun applyColorSemesterBorder(enable: Boolean) {
+        applyDrawable(
+            binding.etSemester,
+            if (enable) R.drawable.shape_round_corners else R.drawable.shape_round_corners_red,
+            this
+        )
+    }
+
+    private fun applyColorCourseNameBorder(enable: Boolean) {
+        applyDrawable(
+            binding.tietCourse,
+            if (enable) R.drawable.shape_round_corners else R.drawable.shape_round_corners_red,
+            this
+        )
+    }
+
     private fun onErrorRegister(isError: Boolean) {
         if (isError) {
             supportFragmentManager.let {
                 sheet.dismiss()
                 customDialog = CustomDialog.joinJobInstance(
                     DialogJoinJobData(
-                        resources.getString(R.string.error_register_description),
+                        resources.getString(R.string.attention_label),
                         DialogState.SUCCESS,
                         resources.getString(R.string.error_register_description)
                     ) { closeDialog(customDialog) }

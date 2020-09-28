@@ -15,11 +15,23 @@ class RegisterViewModel(
 
     val openCourseNameSheet: LiveData<List<SelectionItem>> get() = _openCourseNameSheet
     val enableRegisterButton: LiveData<Boolean> get() = _enableRegisterButton
+    val userNameBorderColor: LiveData<Boolean> get() = _userNameBorderColor
+    val passwordBorderColor: LiveData<Boolean> get() = _passwordBorderColor
+    val emailBorderColor: LiveData<Boolean> get() = _emailBorderColor
+    val courseNameBorderColor: LiveData<Boolean> get() = _courseNameBorderColor
+    val semesterBorderColor: LiveData<Boolean> get() = _semesterBorderColor
+    val rgmBorderColor: LiveData<Boolean> get() = _rgmBorderColor
     val errorDialog: LiveData<Boolean> get() = _errorDialog
 
     private val _openCourseNameSheet: FlexibleLiveData<List<SelectionItem>> = FlexibleLiveData()
     private val _listCourseNameOptions: FlexibleLiveData<List<SelectionItem>> = FlexibleLiveData()
     private val _enableRegisterButton: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
+    private val _userNameBorderColor: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _passwordBorderColor: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _emailBorderColor: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _courseNameBorderColor: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _semesterBorderColor: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _rgmBorderColor: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _errorDialog: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
     private var registerForm = RegisterForm()
@@ -42,26 +54,33 @@ class RegisterViewModel(
 
     fun onNameChanged(text: CharSequence) {
         registerForm.name = text.toString()
+        _userNameBorderColor.value = registerForm.shouldChangeDrawableBorderFieldUserName()
         _enableRegisterButton.value = registerForm.shouldEnableButton()
     }
 
     fun onEmailChanged(text: CharSequence) {
         registerForm.email = text.toString()
+        _emailBorderColor.value = registerForm.shouldChangeDrawableBorderFieldEmail()
+
         _enableRegisterButton.value = registerForm.shouldEnableButton()
     }
 
     fun onPasswordChanged(text: CharSequence) {
         registerForm.password = text.toString()
+        _passwordBorderColor.value = registerForm.shouldChangeDrawableBorderFieldPassword()
+
         _enableRegisterButton.value = registerForm.shouldEnableButton()
     }
 
     fun onRgmChanged(text: CharSequence) {
         registerForm.rgm = text.toString()
+        _rgmBorderColor.value = registerForm.shouldChangeDrawableBorderFieldRgm()
         _enableRegisterButton.value = registerForm.shouldEnableButton()
     }
 
     fun onSemesterChanged(text: CharSequence) {
         registerForm.semester = text.toString()
+        _semesterBorderColor.value = registerForm.shouldChangeDrawableBorderFieldSemester()
         _enableRegisterButton.value = registerForm.shouldEnableButton()
     }
 
@@ -72,7 +91,7 @@ class RegisterViewModel(
             result.let {
                 registerForm.id = it.userUid
                 registerUseCase.createAccountStore(registerForm.build())
-                if (it.isSuccess()) {
+                if (!it.isSuccess()) {
                     _errorDialog.value = true
                 }
             }

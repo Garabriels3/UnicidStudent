@@ -7,6 +7,6 @@ data class FirebaseResponse(
 ) {
 
     fun isSuccess(): Boolean {
-        return errorMessage.isNullOrEmpty()
+        return !errorMessage.isNullOrEmpty()
     }
 }

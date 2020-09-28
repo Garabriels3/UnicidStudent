@@ -10,18 +10,11 @@ class LoginRemoteDataSourceImpl(
     private val userDao: UserDao
 ) : LoginRemoteDataSource {
 
-    override fun loginAccount(email: String, password: String): FirebaseResponse {
-        return try {
-            firebaseAuth.loginAccount(email, password)
-            FirebaseResponse()
-        } catch (e: FirebaseAuthException) {
-            FirebaseResponse(e.toString())
-        }
+    override suspend fun loginAccount(email: String, password: String): FirebaseResponse {
+        return firebaseAuth.loginAccount(email, password)
     }
 
     override fun logoutAccount() {
         TODO("Not yet implemented")
     }
-
-
 }

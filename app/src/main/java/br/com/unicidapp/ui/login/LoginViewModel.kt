@@ -6,6 +6,9 @@ import br.com.domain.entity.SubTest
 import br.com.domain.entity.User
 import br.com.domain.usecase.login.LoginUseCase
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase
@@ -16,6 +19,7 @@ class LoginViewModel(
     val enableDrawableFieldPassword: LiveData<Boolean> get() = _enableDrawableFieldPassword
     val hideKeyboard: LiveData<Boolean> get() = _hideKeyboard
     val onStartRegister: LiveData<Boolean> get() = _onStartRegister
+    val onErrorDialog: LiveData<Boolean> get() = _onErrorDialog
 
     private val _enableLogInButton: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
     private val _enableDrawableFieldUserName: FlexibleLiveData<Boolean> =
@@ -24,6 +28,7 @@ class LoginViewModel(
         FlexibleLiveData()
     private val _hideKeyboard: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _onStartRegister: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _onErrorDialog: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
     private var loginForm = LoginForm()
 
@@ -41,7 +46,10 @@ class LoginViewModel(
 
     fun loginAccount() {
         _hideKeyboard.value = true
-        loginUseCase.loginAccount(loginForm.userName, loginForm.password)
+        CoroutineScope(Dispatchers.Main).launch {
+            val result = loginUseCase.loginAccount(loginForm.userName, loginForm.password)
+            _onErrorDialog.value = result.isSuccess()
+        }
     }
 
     fun navigateToRegister() {

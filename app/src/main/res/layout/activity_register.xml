@@ -65,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/et_nome"
+                android:id="@+id/et_name"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/fifty_two_size"
                 android:layout_marginTop="@dimen/sixteen_value"
@@ -99,7 +99,7 @@
                 android:textColorHint="@color/blue_unicid"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_nome" />
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
             <EditText
                 android:id="@+id/et_rgm"
@@ -174,7 +174,7 @@
                 android:layout_marginEnd="@dimen/fifty_two_value"
                 android:background="@drawable/circle_green_button"
                 android:enabled="false"
-                android:fontFamily="@font/montserrat_semi_bold"
+                android:fontFamily="@font/poppins_medium"
                 android:onClick="@{() -> viewModel.createAccount()}"
                 android:text="@string/finish_button"
                 android:textColor="@color/white"

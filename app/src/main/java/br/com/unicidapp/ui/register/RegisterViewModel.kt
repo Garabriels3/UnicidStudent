@@ -91,9 +91,7 @@ class RegisterViewModel(
             result.let {
                 registerForm.id = it.userUid
                 registerUseCase.createAccountStore(registerForm.build())
-                if (!it.isSuccess()) {
-                    _errorDialog.value = true
-                }
+                _errorDialog.value = it.isSuccess()
             }
         }
     }

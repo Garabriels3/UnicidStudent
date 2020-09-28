@@ -15,8 +15,7 @@ class RegisterRepositoryImpl(
     }
 
     override suspend fun createAccount(email: String, password: String): FirebaseResponse {
-        val result = registerRemoteDataSource.createAccount(email, password)
-        return FirebaseResponse(userUid = result.userUid)
+        return registerRemoteDataSource.createAccount(email, password)
     }
 
     override suspend fun createAccountStore(user: User?) {

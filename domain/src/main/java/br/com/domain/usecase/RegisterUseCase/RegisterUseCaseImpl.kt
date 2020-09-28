@@ -14,8 +14,7 @@ class RegisterUseCaseImpl(
     }
 
     override suspend fun createAccount(email: String, password: String): FirebaseResponse {
-        val result = registerRepository.createAccount(email, password)
-        return FirebaseResponse(userUid = result.userUid)
+        return registerRepository.createAccount(email, password)
     }
 
     override suspend fun getGrid(get: (List<SelectionItem>) -> Unit) {

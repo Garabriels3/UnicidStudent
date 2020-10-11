@@ -2,9 +2,8 @@ package br.com.unicidapp.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import br.com.domain.entity.SubTest
-import br.com.domain.entity.User
 import br.com.domain.usecase.login.LoginUseCase
+import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,12 +11,11 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     val enableSignInButton: LiveData<Boolean> get() = _enableLogInButton
     val enableDrawableFieldUserName: LiveData<Boolean> get() = _enableDrawableFieldUserName
     val enableDrawableFieldPassword: LiveData<Boolean> get() = _enableDrawableFieldPassword
-    val hideKeyboard: LiveData<Boolean> get() = _hideKeyboard
     val onStartRegister: LiveData<Boolean> get() = _onStartRegister
     val onErrorDialog: LiveData<Boolean> get() = _onErrorDialog
 
@@ -26,7 +24,6 @@ class LoginViewModel(
         FlexibleLiveData()
     private val _enableDrawableFieldPassword: FlexibleLiveData<Boolean> =
         FlexibleLiveData()
-    private val _hideKeyboard: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _onStartRegister: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _onErrorDialog: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
@@ -45,8 +42,8 @@ class LoginViewModel(
     }
 
     fun loginAccount() {
-        _hideKeyboard.value = true
-        CoroutineScope(Dispatchers.Main).launch {
+        dismissKeyboard()
+        launch(baseLoading) {
             val result = loginUseCase.loginAccount(loginForm.userName, loginForm.password)
             _onErrorDialog.value = result.isSuccess()
         }

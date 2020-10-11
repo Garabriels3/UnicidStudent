@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.addAverege.AddAverageActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fifty_six_value"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/PoppinsRegularAppearance"
+            app:navigationIcon="@drawable/ic_left_arrow_black"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="Adicionar Nota"
+            app:titleTextColor="@color/blue_unicid" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

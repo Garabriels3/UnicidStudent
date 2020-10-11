@@ -43,8 +43,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/ic_left_arrow_black"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextColor="@color/blue_unicid" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             <EditText
                 android:id="@+id/et_email"

@@ -3,6 +3,7 @@ package br.com.unicidapp.di
 import br.com.unicidapp.ui.login.LoginViewModel
 import br.com.unicidapp.ui.optionDialog.OptionsViewModel
 import br.com.unicidapp.ui.register.RegisterViewModel
+import br.com.unicidapp.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -12,5 +13,6 @@ object AppModules {
         viewModel { LoginViewModel(get()) }
         viewModel { RegisterViewModel(get()) }
         viewModel { OptionsViewModel() }
+        viewModel { SplashViewModel(get()) }
     }
 }

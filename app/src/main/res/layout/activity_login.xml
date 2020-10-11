@@ -12,139 +12,142 @@
             type="br.com.unicidapp.ui.login.LoginViewModel" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <br.com.unicidapp.utils.bounce.BounceScrollView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:animateLayoutChanges="true"
-            android:background="@color/blue_unicid"
-            tools:context=".ui.login.LoginActivity">
-
-            <ImageView
-                android:id="@+id/iv_logo"
-                android:layout_width="@dimen/two_hundred_four_value"
-                android:layout_height="@dimen/two_hundred_four_value"
-                android:layout_marginTop="@dimen/sixteen_value"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_logo_unicid" />
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:focusableInTouchMode="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/two_hundred_twenty_eight_value"
-                android:background="@drawable/shape_card_onduled"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:onClick="@{() -> viewModel.dismissKeyboard()}"
+                android:background="@color/blue_unicid"
+                android:focusableInTouchMode="true"
+                tools:context=".ui.login.LoginActivity">
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/eighty_eight_value"
-                    android:fontFamily="@font/montserrat_light"
-                    android:text="@string/student_area"
-                    android:textAllCaps="true"
-                    android:textColor="@color/blue_unicid"
-                    android:textSize="@dimen/eighteen_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/et_email"
-                    android:layout_width="@dimen/zero_value"
-                    android:layout_height="@dimen/fifty_two_size"
-                    android:layout_marginStart="@dimen/fifty_two_value"
-                    android:layout_marginTop="@dimen/forty_four_value"
-                    android:layout_marginEnd="@dimen/fifty_two_value"
-                    android:background="@drawable/shape_round_corners"
-                    android:hint="@string/type_rgm"
-                    android:inputType="textEmailAddress"
-                    android:lines="1"
-                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onUsernameTextChanged(text)}"
-                    android:padding="@dimen/sixteen_value"
-                    android:textColor="@color/blue_unicid"
-                    android:textColorHint="@color/blue_unicid"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="@dimen/zero_value"
-                    android:layout_height="@dimen/fifty_two_size"
-                    android:layout_marginStart="@dimen/fifty_two_value"
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="@dimen/two_hundred_four_value"
+                    android:layout_height="@dimen/two_hundred_four_value"
                     android:layout_marginTop="@dimen/sixteen_value"
-                    android:layout_marginEnd="@dimen/fifty_two_value"
-                    android:autofillHints=""
-                    android:background="@drawable/shape_round_corners"
-                    android:hint="@string/hint_password"
-                    android:inputType="textPassword"
-                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onPasswordTextChanged(text)}"
-                    android:padding="@dimen/sixteen_value"
-                    android:textColor="@color/blue_unicid"
-                    android:textColorHint="@color/blue_unicid"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_email" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_logo_unicid" />
 
-                <Button
-                    android:id="@+id/bt_login"
-                    android:layout_width="@dimen/zero_value"
-                    android:layout_height="@dimen/fifty_two_size"
-                    android:layout_marginStart="@dimen/fifty_two_value"
-                    android:layout_marginTop="@dimen/thirty_two_value"
-                    android:layout_marginEnd="@dimen/fifty_two_value"
-                    android:background="@drawable/shape_round_corners_gradient"
-                    android:fontFamily="@font/montserrat_semi_bold"
-                    android:onClick="@{() -> viewModel.loginAccount()}"
-                    android:text="@string/login"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_password" />
-
-                <Button
-                    android:id="@+id/bt_register"
-                    android:layout_width="@dimen/zero_value"
-                    android:layout_height="@dimen/fifty_two_size"
-                    android:layout_marginStart="@dimen/fifty_two_value"
-                    android:layout_marginTop="@dimen/sixteen_value"
-                    android:layout_marginEnd="@dimen/fifty_two_value"
-                    android:background="@drawable/shape_round_corners"
-                    android:fontFamily="@font/montserrat_semi_bold"
-                    android:onClick="@{() -> viewModel.navigateToRegister()}"
-                    android:text="@string/register_label"
-                    android:textColor="@color/blue_unicid"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bt_login" />
-
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/b_barrier"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:barrierDirection="top"
-                    app:constraint_referenced_ids="v_barrier, v_barrier" />
-
-                <View
-                    android:id="@+id/v_barrier"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_card"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/forty_value"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/two_hundred_twenty_eight_value"
+                    android:background="@drawable/shape_card_onduled"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bt_register" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/eighty_eight_value"
+                        android:fontFamily="@font/montserrat_light"
+                        android:text="@string/student_area"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue_unicid"
+                        android:textSize="@dimen/eighteen_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="@dimen/zero_value"
+                        android:layout_height="@dimen/fifty_two_size"
+                        android:layout_marginStart="@dimen/fifty_two_value"
+                        android:layout_marginTop="@dimen/forty_four_value"
+                        android:layout_marginEnd="@dimen/fifty_two_value"
+                        android:background="@drawable/shape_round_corners"
+                        android:hint="@string/type_rgm"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onUsernameTextChanged(text)}"
+                        android:padding="@dimen/sixteen_value"
+                        android:textColor="@color/blue_unicid"
+                        android:textColorHint="@color/blue_unicid"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="@dimen/zero_value"
+                        android:layout_height="@dimen/fifty_two_size"
+                        android:layout_marginStart="@dimen/fifty_two_value"
+                        android:layout_marginTop="@dimen/sixteen_value"
+                        android:layout_marginEnd="@dimen/fifty_two_value"
+                        android:autofillHints=""
+                        android:background="@drawable/shape_round_corners"
+                        android:hint="@string/hint_password"
+                        android:inputType="textPassword"
+                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onPasswordTextChanged(text)}"
+                        android:padding="@dimen/sixteen_value"
+                        android:textColor="@color/blue_unicid"
+                        android:textColorHint="@color/blue_unicid"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+                    <Button
+                        android:id="@+id/bt_login"
+                        android:layout_width="@dimen/zero_value"
+                        android:layout_height="@dimen/fifty_two_size"
+                        android:layout_marginStart="@dimen/fifty_two_value"
+                        android:layout_marginTop="@dimen/thirty_two_value"
+                        android:layout_marginEnd="@dimen/fifty_two_value"
+                        android:background="@drawable/shape_round_corners_gradient"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:onClick="@{() -> viewModel.loginAccount()}"
+                        android:text="@string/login"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+                    <Button
+                        android:id="@+id/bt_register"
+                        android:layout_width="@dimen/zero_value"
+                        android:layout_height="@dimen/fifty_two_size"
+                        android:layout_marginStart="@dimen/fifty_two_value"
+                        android:layout_marginTop="@dimen/sixteen_value"
+                        android:layout_marginEnd="@dimen/fifty_two_value"
+                        android:background="@drawable/shape_round_corners"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:onClick="@{() -> viewModel.navigateToRegister()}"
+                        android:text="@string/register_label"
+                        android:textColor="@color/blue_unicid"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/bt_login" />
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/b_barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="top"
+                        app:constraint_referenced_ids="v_barrier, v_barrier" />
+
+                    <View
+                        android:id="@+id/v_barrier"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/forty_value"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/bt_register" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        </br.com.unicidapp.utils.bounce.BounceScrollView>
 </layout>

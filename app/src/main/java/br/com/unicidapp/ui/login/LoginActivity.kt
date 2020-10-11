@@ -11,29 +11,32 @@ import br.com.unicidapp.ui.component.CustomDialog
 import br.com.unicidapp.ui.component.DialogState
 import br.com.unicidapp.ui.register.RegisterActivity
 import br.com.unicidapp.utils.applyDrawable
+import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.hideKeyboard
 import br.com.unicidapp.utils.extensions.isEnabled
+import br.com.unicidapp.utils.extensions.nullableCast
 import br.com.unicidapp.utils.parcelable.DialogJoinJobData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val viewModel: LoginViewModel by viewModel()
+    override val viewModel: LoginViewModel by viewModel()
     lateinit var sheet: BottomSheetDialog
     lateinit var customDialog: CustomDialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.viewModel = viewModel
-        setupObservables()
+    }
+
+    override fun setupScreen() {
         sheet = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
     }
 
-    private fun setupObservables() {
+    override fun subscribeUi() {
         bind(viewModel.enableSignInButton, ::shouldEnableSignInButton)
         bind(viewModel.enableDrawableFieldUserName, ::applyColorLoginEmailBorder)
         bind(viewModel.enableDrawableFieldPassword, ::applyColorLoginPasswordBorder)

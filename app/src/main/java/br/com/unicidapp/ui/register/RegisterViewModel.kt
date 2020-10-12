@@ -1,9 +1,9 @@
 package br.com.unicidapp.ui.register
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import br.com.domain.entity.*
+import br.com.domain.entity.SelectionItem
 import br.com.domain.usecase.RegisterUseCase.RegisterUseCase
+import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class RegisterViewModel(
     private val registerUseCase: RegisterUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     val openCourseNameSheet: LiveData<List<SelectionItem>> get() = _openCourseNameSheet
     val enableRegisterButton: LiveData<Boolean> get() = _enableRegisterButton
@@ -85,7 +85,7 @@ class RegisterViewModel(
     }
 
     fun createAccount() {
-        CoroutineScope(Dispatchers.Main).launch {
+        launch(baseLoading) {
             val result =
                 registerUseCase.createAccount(registerForm.email, registerForm.password)
             result.let {

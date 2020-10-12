@@ -11,6 +11,7 @@ import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityRegisterBinding
 import br.com.unicidapp.ui.component.CustomDialog
 import br.com.unicidapp.ui.component.DialogState
+import br.com.unicidapp.ui.login.LoginActivity
 import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
 import br.com.unicidapp.utils.applyDrawable
 import br.com.unicidapp.utils.extensions.bind
@@ -134,9 +135,21 @@ class RegisterActivity : AppCompatActivity() {
                 customDialog = CustomDialog.joinJobInstance(
                     DialogJoinJobData(
                         resources.getString(R.string.attention_label),
-                        DialogState.SUCCESS,
+                        DialogState.ERROR,
                         resources.getString(R.string.error_register_description)
                     ) { closeDialog(customDialog) }
+                )
+                customDialog.showNow(it, "")
+            }
+        } else {
+            supportFragmentManager.let {
+                sheet.dismiss()
+                customDialog = CustomDialog.joinJobInstance(
+                    DialogJoinJobData(
+                        resources.getString(R.string.congratulation_label),
+                        DialogState.SUCCESS,
+                        resources.getString(R.string.success_register_description)
+                    ) { LoginActivity.start(this) }
                 )
                 customDialog.showNow(it, "")
             }

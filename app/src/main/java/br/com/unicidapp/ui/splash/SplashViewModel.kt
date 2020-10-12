@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import br.com.domain.storange.Cache
 import br.com.unicidapp.BuildConfig
+import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(
     private val cache: Cache
-) : ViewModel() {
+) : BaseViewModel() {
 
     val goToLogin: LiveData<Boolean> get() = _goToLogin
     val normalInit: LiveData<Boolean> get() = _normalInit
@@ -26,7 +27,7 @@ class SplashViewModel(
     private val delayMillsToDurationSplashScreen = 5000L
 
     fun onStartApp() {
-        CoroutineScope(Dispatchers.Main).launch {
+        launch(baseLoading) {
             delay(delayMillsToDurationSplashScreen)
             _goToLogin.value = true
         }

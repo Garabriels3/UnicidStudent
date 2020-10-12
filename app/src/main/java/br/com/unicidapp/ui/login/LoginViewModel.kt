@@ -1,13 +1,9 @@
 package br.com.unicidapp.ui.login
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import br.com.domain.usecase.login.LoginUseCase
 import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase

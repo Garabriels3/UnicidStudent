@@ -2,8 +2,6 @@ package br.com.unicidapp.ui.login
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityLoginBinding
@@ -15,7 +13,6 @@ import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.hideKeyboard
 import br.com.unicidapp.utils.extensions.isEnabled
-import br.com.unicidapp.utils.extensions.nullableCast
 import br.com.unicidapp.utils.parcelable.DialogJoinJobData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel

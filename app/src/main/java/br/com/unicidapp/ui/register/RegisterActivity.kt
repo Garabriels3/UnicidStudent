@@ -2,9 +2,7 @@ package br.com.unicidapp.ui.register
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.domain.entity.SelectionItem
 import br.com.unicidapp.R
@@ -14,6 +12,7 @@ import br.com.unicidapp.ui.component.DialogState
 import br.com.unicidapp.ui.login.LoginActivity
 import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
 import br.com.unicidapp.utils.applyDrawable
+import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.hideKeyboard
 import br.com.unicidapp.utils.extensions.isEnabled
@@ -22,25 +21,25 @@ import br.com.unicidapp.utils.parcelable.DialogJoinJobData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private val viewModel: RegisterViewModel by viewModel()
+    override val viewModel: RegisterViewModel by viewModel()
 
     lateinit var sheet: BottomSheetDialog
     lateinit var customDialog: CustomDialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
         binding.viewModel = viewModel
+    }
+
+    override fun setupScreen() {
         setupToolbar(binding.toolbar, true)
-        setupObservables()
-        viewModel.onCreate()
         sheet = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
     }
 
-    private fun setupObservables() {
+    override fun subscribeUi() {
         bind(viewModel.openCourseNameSheet, ::openSchoolLevelSheet)
         bind(viewModel.enableRegisterButton, ::enableNextStepClick)
         bind(viewModel.errorDialog, ::onErrorRegister)

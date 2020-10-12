@@ -1,6 +1,8 @@
 package br.com.unicidapp.ui.splash
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import br.com.domain.storange.Cache
 import br.com.unicidapp.BuildConfig
@@ -17,15 +19,15 @@ class SplashViewModel(
 ) : BaseViewModel() {
 
     val goToLogin: LiveData<Boolean> get() = _goToLogin
-    val normalInit: LiveData<Boolean> get() = _normalInit
     val onBoardingInit: LiveData<Boolean> get() = _onBoardingInit
 
     private val _goToLogin: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
-    private val _normalInit: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
     private val _onBoardingInit: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
 
     private val delayMillsToDurationSplashScreen = 5000L
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @SuppressWarnings("unused")
     fun onStartApp() {
         launch(baseLoading) {
             delay(delayMillsToDurationSplashScreen)
@@ -33,6 +35,8 @@ class SplashViewModel(
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @SuppressWarnings("unused")
     fun checkFirstRun() {
         val PREF_VERSION_CODE_KEY = "version_code"
         val DOESNT_EXIST = -1
@@ -45,7 +49,6 @@ class SplashViewModel(
         // Check for first run or upgrade
         when {
             currentVersionCode == savedVersionCode -> {
-                _normalInit.value = true
                 return
             }
             savedVersionCode == DOESNT_EXIST -> {

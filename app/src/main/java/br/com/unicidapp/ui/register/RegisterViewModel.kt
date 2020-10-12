@@ -1,13 +1,12 @@
 package br.com.unicidapp.ui.register
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.OnLifecycleEvent
 import br.com.domain.entity.SelectionItem
 import br.com.domain.usecase.RegisterUseCase.RegisterUseCase
 import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class RegisterViewModel(
     private val registerUseCase: RegisterUseCase
@@ -36,8 +35,10 @@ class RegisterViewModel(
 
     private var registerForm = RegisterForm()
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @SuppressWarnings("unused")
     fun onCreate() {
-        CoroutineScope(Dispatchers.Main).launch {
+        launch(baseLoading) {
             registerUseCase.getGrid {
                 _listCourseNameOptions.value = it
             }

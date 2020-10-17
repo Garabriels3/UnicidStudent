@@ -1,7 +1,7 @@
 package br.com.unicidapp.ui.login
 
 import androidx.lifecycle.LiveData
-import br.com.domain.usecase.login.LoginUseCase
+import br.com.domain.usecase.loginUseCase.LoginUseCase
 import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
 

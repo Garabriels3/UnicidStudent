@@ -1,5 +1,7 @@
 package br.com.unicidapp.di
 
+import br.com.unicidapp.ui.average.AverageViewModel
+import br.com.unicidapp.ui.average.addAverage.AddAverageViewModel
 import br.com.unicidapp.ui.login.LoginViewModel
 import br.com.unicidapp.ui.optionDialog.OptionsViewModel
 import br.com.unicidapp.ui.register.RegisterViewModel
@@ -14,5 +16,7 @@ object AppModules {
         viewModel { RegisterViewModel(get()) }
         viewModel { OptionsViewModel() }
         viewModel { SplashViewModel(get()) }
+        viewModel { AverageViewModel() }
+        viewModel { AddAverageViewModel(get()) }
     }
 }

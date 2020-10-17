@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="disciplineName"
+            type="String" />
+
+        <variable
+            name="viewModel"
+            type="br.com.unicidapp.ui.average.addAverage.AddAverageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Whisper"
+        tools:context=".ui.average.addAverage.AddAverageActivity">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_course"
+            style="@style/AppTheme.TextInput"
+            android:layout_width="@dimen/zero_value"
+            android:layout_marginTop="@dimen/sixteen_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiet_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="@string/select_discipline_label"
+                android:inputType="text"
+                android:onClick="@{() -> viewModel.openDisciplineNameSheet()}"
+                android:textColor="@color/blue_unicid"
+                android:textColorHint="@color/blue_unicid"
+                android:theme="@style/MyTheme.EditText"
+                app:drawableEndCompat="@drawable/ic_dropdown"
+                tools:fontFamily="@font/poppins_regular"
+                android:text="@{disciplineName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

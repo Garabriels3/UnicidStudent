@@ -1,6 +1,5 @@
 package br.com.unicidapp.utils.extensions
 
-import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar

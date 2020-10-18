@@ -4,99 +4,124 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.unicidapp.ui.average.AverageViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Whisper"
-        tools:context=".ui.average.AverageActivity">
+        android:background="@color/blue_unicid"
+        tools:context=".ui.register.RegisterActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/fifty_six_value"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_left_arrow_black"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Adicionar Nota"
-            app:titleTextAppearance="@style/PoppinsRegularAppearance"
-            app:titleTextColor="@color/blue_unicid" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_add"
-            android:layout_width="@dimen/zero_value"
-            android:layout_height="@dimen/hundred_value"
-            android:layout_marginStart="@dimen/twenty_four_value"
-            android:layout_marginTop="@dimen/forty_four_value"
-            android:layout_marginEnd="@dimen/twenty_four_value"
-            android:backgroundTint="@color/white"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="@dimen/sixteen_value"
-            app:cardElevation="@dimen/twenty_four_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_add"
-                    android:layout_width="@dimen/thirty_six_value"
-                    android:layout_height="@dimen/thirty_six_value"
-                    android:layout_marginStart="@dimen/thirty_two_value"
-                    android:background="@drawable/ic_add_button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="@dimen/zero_value"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/sixteen_value"
-                    android:layout_marginEnd="@dimen/thirty_two_value"
-                    android:text="@string/add_label"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/PoppinsRegularAppearance"
-                    android:textColor="@color/blue_unicid"
-                    android:textSize="@dimen/twenty_four_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/iv_add"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <View
-            android:id="@+id/v_divider"
-            android:layout_width="@dimen/zero_value"
-            android:layout_height="@dimen/two_value"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/sixteen_value"
             android:layout_marginTop="@dimen/twenty_four_value"
             android:layout_marginEnd="@dimen/sixteen_value"
-            android:background="@color/opacityCornflowerBlue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_add" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_average_list"
-            android:layout_width="@dimen/zero_value"
-            android:layout_height="@dimen/zero_value"
-            android:layout_marginTop="@dimen/twenty_four_value"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginBottom="@dimen/twenty_four_value"
+            android:background="@drawable/shape_card_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/v_divider"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_average" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty_six_value"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:theme="@style/Widget.AppCompat.ActionBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_left_arrow_black"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="Adicionar Nota"
+                app:titleTextAppearance="@style/PoppinsRegularAppearance"
+                app:titleTextColor="@color/blue_unicid" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_add"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/hundred_value"
+                android:layout_marginStart="@dimen/twenty_four_value"
+                android:layout_marginTop="@dimen/forty_four_value"
+                android:layout_marginEnd="@dimen/twenty_four_value"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/sixteen_value"
+                app:cardElevation="@dimen/twenty_four_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="@{() -> viewModel.goToAddAverageScreen()}"
+                    android:focusable="true">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_add"
+                        android:layout_width="@dimen/thirty_six_value"
+                        android:layout_height="@dimen/thirty_six_value"
+                        android:layout_marginStart="@dimen/thirty_two_value"
+                        android:background="@drawable/ic_add_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="@dimen/zero_value"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/sixteen_value"
+                        android:layout_marginEnd="@dimen/thirty_two_value"
+                        android:text="@string/add_label"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/PoppinsRegularAppearance"
+                        android:textColor="@color/blue_unicid"
+                        android:textSize="@dimen/twenty_four_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_add"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/v_divider"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/two_value"
+                android:layout_marginStart="@dimen/sixteen_value"
+                android:layout_marginTop="@dimen/twenty_four_value"
+                android:layout_marginEnd="@dimen/sixteen_value"
+                android:background="@color/opacityCornflowerBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_add" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_average_list"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/zero_value"
+                android:layout_marginTop="@dimen/twenty_four_value"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_divider"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_average" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,6 +4,7 @@ class LoginForm {
 
     var userName: String = ""
     var password: String = ""
+    var token: String? = ""
 
     private fun userNameIsValid(): Boolean {
         return (userName.isNotEmpty())

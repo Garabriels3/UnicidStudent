@@ -28,6 +28,9 @@
             android:layout_marginEnd="@dimen/sixteen_value"
             android:layout_marginBottom="@dimen/twenty_four_value"
             android:background="@drawable/shape_card_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.dismissKeyboard()}"
             android:paddingStart="@dimen/sixteen_value"
             android:paddingEnd="@dimen/sixteen_value"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +48,7 @@
                 app:navigationIcon="@drawable/ic_left_arrow_black"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_email"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/fifty_two_size"
@@ -63,7 +66,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_name"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/fifty_two_size"
@@ -81,7 +84,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_email" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_password"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/fifty_two_size"
@@ -100,7 +103,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_rgm"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/fifty_two_size"
@@ -146,7 +149,7 @@
                     tools:text="@{courseName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_semester"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/fifty_two_size"

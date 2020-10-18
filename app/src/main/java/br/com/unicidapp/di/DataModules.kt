@@ -1,6 +1,7 @@
 package br.com.unicidapp.di
 
 import br.com.data.di.MapperModules.documentSnapshotToSelectionItemMapper
+import br.com.data.di.MapperModules.documentSnapshotToUserMapper
 import br.com.data.di.MapperModules.querySnapshotToSelectionItemMapper
 import br.com.data.repository.AddAverageRepositoryImpl
 import br.com.data.repository.LoginRepositoryImpl
@@ -38,7 +39,7 @@ object DataModules {
 
         single<LoginRemoteDataSource> {
             LoginRemoteDataSourceImpl(
-                get(), get()
+                get(), get(), get(named(documentSnapshotToUserMapper))
             )
         }
 

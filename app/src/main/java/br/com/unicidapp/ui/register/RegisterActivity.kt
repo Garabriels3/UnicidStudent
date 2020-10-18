@@ -49,6 +49,7 @@ class RegisterActivity : BaseActivity() {
         bind(viewModel.rgmBorderColor, ::applyColorRgmBorder)
         bind(viewModel.semesterBorderColor, ::applyColorSemesterBorder)
         bind(viewModel.courseNameBorderColor, ::applyColorCourseNameBorder)
+        bind(viewModel.hideKeyboard) { hideKeyboard() }
     }
 
     private fun openSchoolLevelSheet(listSchoolLevel: List<SelectionItem>) {
@@ -56,7 +57,7 @@ class RegisterActivity : BaseActivity() {
             listSchoolLevel, "Selecione seu curso"
         ) { option ->
             viewModel.setCourseNameChanged(option)
-            binding.courseName = option.find { it.isSelected }?.id
+            binding.courseName = option.find { it.isSelected }?.description
         }.also { it.show(supportFragmentManager, EMPTY_TEXT) }
     }
 
@@ -133,10 +134,10 @@ class RegisterActivity : BaseActivity() {
                 sheet.dismiss()
                 customDialog = CustomDialog.joinJobInstance(
                     DialogJoinJobData(
-                        resources.getString(R.string.attention_label),
-                        DialogState.ERROR,
-                        resources.getString(R.string.error_register_description)
-                    ) { closeDialog(customDialog) }
+                        resources.getString(R.string.congratulation_label),
+                        DialogState.SUCCESS,
+                        resources.getString(R.string.success_register_description)
+                    ) { LoginActivity.start(this) }
                 )
                 customDialog.showNow(it, "")
             }
@@ -145,10 +146,10 @@ class RegisterActivity : BaseActivity() {
                 sheet.dismiss()
                 customDialog = CustomDialog.joinJobInstance(
                     DialogJoinJobData(
-                        resources.getString(R.string.congratulation_label),
-                        DialogState.SUCCESS,
-                        resources.getString(R.string.success_register_description)
-                    ) { LoginActivity.start(this) }
+                        resources.getString(R.string.attention_label),
+                        DialogState.ERROR,
+                        resources.getString(R.string.error_register_description)
+                    ) { closeDialog(customDialog) }
                 )
                 customDialog.showNow(it, "")
             }

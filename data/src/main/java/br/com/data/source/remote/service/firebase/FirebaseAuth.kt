@@ -1,13 +1,9 @@
 package br.com.data.source.remote.service.firebase
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import br.com.domain.entity.FirebaseResponse
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 
 class FirebaseAuth {
 

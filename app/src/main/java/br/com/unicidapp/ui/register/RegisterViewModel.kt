@@ -47,7 +47,7 @@ class RegisterViewModel(
 
     fun setCourseNameChanged(options: List<SelectionItem>?) {
         options?.let {
-            registerForm.courseName = it.find { item -> item.isSelected }?.id.toString()
+            registerForm.courseName = it.find { item -> item.isSelected }?.description.toString()
             _enableRegisterButton.value = registerForm.shouldEnableButton()
         }
         _listCourseNameOptions.value = options

@@ -2,6 +2,7 @@ package br.com.data.source.remote.service.firebase.dao
 
 import android.util.Log
 import br.com.domain.entity.User
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
 
 class UserDao : BaseFirestoreDao<User>() {
@@ -11,22 +12,27 @@ class UserDao : BaseFirestoreDao<User>() {
     }
 
     fun createAccountStore(user: User?) {
-        if (user != null) {
-            db.collection(USER_COLLECTION).document(user.id)
-                .set(user)
-                .addOnSuccessListener {
-                    Log.d(javaClass.name, "DocumentSnapshot added")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(javaClass.name, "Error adding document", e)
-                }
+        user?.let {
+            user.id?.let {
+                db.collection(USER_COLLECTION).document(it)
+                    .set(user)
+                    .addOnSuccessListener {
+                        Log.d(javaClass.name, "DocumentSnapshot added")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(javaClass.name, "Error adding document", e)
+                    }
+            }
         }
+    }
+
+    fun getUserInfo(token: String?): DocumentReference? {
+        return token?.let { db.collection(USER_COLLECTION).document(it) }
     }
 
     fun findAll(): Query {
         return collection()
     }
-
 
     companion object {
         const val NAME = "name"

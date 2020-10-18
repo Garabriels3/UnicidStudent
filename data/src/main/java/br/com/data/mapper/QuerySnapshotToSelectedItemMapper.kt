@@ -8,9 +8,9 @@ class QuerySnapshotToSelectedItemMapper : Mapper<QuerySnapshot, List<SelectionIt
 
     override fun transform(item: QuerySnapshot?): List<SelectionItem>? {
         return item?.toObjects(UserData::class.java)
-            ?.mapIndexed { index: Int, userData: UserData? ->
+            ?.mapIndexed { index: Int, _: UserData? ->
                 SelectionItem(
-                    id = item.documents[index].id
+                    description = item.documents[index].id
                 )
             }
     }

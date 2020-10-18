@@ -12,11 +12,11 @@ import org.koin.dsl.module
 object AppModules {
 
     val viewModelModules = module {
-        viewModel { LoginViewModel(get()) }
+        viewModel { LoginViewModel(get(), get()) }
         viewModel { RegisterViewModel(get()) }
         viewModel { OptionsViewModel() }
         viewModel { SplashViewModel(get()) }
         viewModel { AverageViewModel() }
-        viewModel { AddAverageViewModel(get()) }
+        viewModel { AddAverageViewModel(get(), get()) }
     }
 }

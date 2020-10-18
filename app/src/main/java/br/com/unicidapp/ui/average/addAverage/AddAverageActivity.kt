@@ -1,5 +1,7 @@
 package br.com.unicidapp.ui.average.addAverage
 
+import android.content.Context
+import android.content.Intent
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import br.com.domain.entity.SelectionItem
@@ -9,6 +11,7 @@ import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
 import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.hideKeyboard
+import br.com.unicidapp.utils.extensions.setupToolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddAverageActivity : BaseActivity() {
@@ -22,11 +25,12 @@ class AddAverageActivity : BaseActivity() {
     }
 
     override fun setupScreen() {
-
+        setupToolbar(binding.toolbar, showHome = true, title = getString(R.string.sum_average))
     }
 
     override fun subscribeUi() {
         bind(viewModel.openDisciplineNameSheet, ::openDisciplineSheet)
+        bind(viewModel.hideKeyboard) { hideKeyboard() }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -51,5 +55,9 @@ class AddAverageActivity : BaseActivity() {
 
     companion object {
         private const val EMPTY_TEXT = ""
+
+        fun start(context: Context) {
+            context.startActivity(Intent(context, AddAverageActivity::class.java))
+        }
     }
 }

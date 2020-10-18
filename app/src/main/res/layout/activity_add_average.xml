@@ -17,17 +17,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> viewModel.dismissKeyboard()}"
         android:background="@color/Whisper"
         tools:context=".ui.average.addAverage.AddAverageActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_left_arrow_black"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/sum_average"
+            app:titleTextColor="@color/blue_unicid" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_course"
             style="@style/AppTheme.TextInput"
             android:layout_width="@dimen/zero_value"
-            android:layout_marginTop="@dimen/sixteen_value"
+            android:layout_marginStart="@dimen/sixteen_value"
+            android:layout_marginTop="@dimen/thirty_two_value"
+            android:layout_marginEnd="@dimen/sixteen_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiet_course"
@@ -40,13 +56,53 @@
                 android:hint="@string/select_discipline_label"
                 android:inputType="text"
                 android:onClick="@{() -> viewModel.openDisciplineNameSheet()}"
+                android:text="@{disciplineName}"
                 android:textColor="@color/blue_unicid"
                 android:textColorHint="@color/blue_unicid"
                 android:theme="@style/MyTheme.EditText"
                 app:drawableEndCompat="@drawable/ic_dropdown"
-                tools:fontFamily="@font/poppins_regular"
-                android:text="@{disciplineName}" />
-
+                tools:fontFamily="@font/poppins_regular" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_a1"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="@dimen/fifty_two_size"
+            android:layout_marginStart="@dimen/sixteen_value"
+            android:layout_marginTop="@dimen/sixteen_value"
+            android:layout_marginEnd="@dimen/sixteen_value"
+            android:background="@drawable/shape_round_corners"
+            android:hint="@string/label_hint_a1"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:maxLines="1"
+            android:onTextChanged="@{(text, start, before, count) -> viewModel.onFirstNoteChanged(text)}"
+            android:padding="@dimen/sixteen_value"
+            android:textColor="@color/blue_unicid"
+            android:textColorHint="@color/blue_unicid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_course" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_a2"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="@dimen/fifty_two_size"
+            android:layout_marginStart="@dimen/sixteen_value"
+            android:layout_marginTop="@dimen/sixteen_value"
+            android:layout_marginEnd="@dimen/sixteen_value"
+            android:background="@drawable/shape_round_corners"
+            android:hint="@string/label_hint_a2"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:maxLines="1"
+            android:onTextChanged="@{(text, start, before, count) -> viewModel.onSecondNoteChanged(text)}"
+            android:padding="@dimen/sixteen_value"
+            android:textColor="@color/blue_unicid"
+            android:textColorHint="@color/blue_unicid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_a1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -17,10 +17,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/Whisper"
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{() -> viewModel.dismissKeyboard()}"
-        android:background="@color/Whisper"
         tools:context=".ui.average.addAverage.AddAverageActivity">
 
         <androidx.appcompat.widget.Toolbar
@@ -103,6 +103,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_a1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_login"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="@dimen/sixty_value"
+            android:layout_marginStart="@dimen/fifty_two_value"
+            android:layout_marginEnd="@dimen/fifty_two_value"
+            android:layout_marginBottom="@dimen/thirty_two_value"
+            android:background="@drawable/circle_green_button"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:onClick="@{() -> viewModel.onSaveNote()}"
+            android:text="@string/save_button_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sixteen_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,24 +2,33 @@
 
 <layout>
 
+    <data>
+
+        <variable
+            name="averageModel"
+            type="br.com.domain.entity.AddAverage" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_add"
             android:layout_width="@dimen/zero_value"
             android:layout_height="@dimen/hundred_value"
             android:layout_marginStart="@dimen/twenty_four_value"
-            android:layout_marginTop="@dimen/thirty_two_value"
+            android:layout_marginTop="@dimen/sixteen_value"
             android:layout_marginEnd="@dimen/twenty_four_value"
+            android:layout_marginBottom="@dimen/sixteen_value"
             android:backgroundTint="@color/white"
             android:clickable="true"
             android:focusable="true"
             app:cardCornerRadius="@dimen/sixteen_value"
-            app:cardElevation="@dimen/thirty_six_value"
+            app:cardElevation="@dimen/sixteen_value"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -42,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/twenty_four_value"
-                        android:text="@string/default_averege"
+                        android:text="@{averageModel.totalNote}"
                         android:textAlignment="center"
                         android:textAppearance="@style/PoppinsRegularAppearance"
                         android:textColor="@color/blue_unicid"
@@ -62,11 +71,12 @@
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_discipline"
                     android:layout_width="@dimen/zero_value"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/sixteen_value"
                     android:layout_marginEnd="@dimen/thirty_two_value"
-                    android:text="@string/add_label"
+                    android:text="@{averageModel.discipline}"
                     android:textAlignment="center"
                     android:textAppearance="@style/PoppinsRegularAppearance"
                     android:textColor="@color/blue_unicid"

@@ -16,7 +16,7 @@ object AppModules {
         viewModel { RegisterViewModel(get()) }
         viewModel { OptionsViewModel() }
         viewModel { SplashViewModel(get()) }
-        viewModel { AverageViewModel() }
+        viewModel { AverageViewModel(get(), get()) }
         viewModel { AddAverageViewModel(get(), get()) }
     }
 }

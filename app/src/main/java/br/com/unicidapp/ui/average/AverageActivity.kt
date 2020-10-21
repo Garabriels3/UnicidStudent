@@ -3,6 +3,7 @@ package br.com.unicidapp.ui.average
 import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
+import br.com.domain.entity.AddAverage
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityAverageBinding
 import br.com.unicidapp.ui.average.addAverage.AddAverageActivity
@@ -23,6 +24,15 @@ class AverageActivity : BaseActivity() {
         setupAdapters()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        intent.extras?.let {
+            (it.getSerializable(EXTRA_AVERAGE) as? List<AddAverage>)?.let { listAddAverage ->
+
+            }
+        }
+    }
+
     override fun setupScreen() {
         setupToolbar(
             binding.toolbar,
@@ -32,7 +42,8 @@ class AverageActivity : BaseActivity() {
     }
 
     override fun subscribeUi() {
-        bind(viewModel.goToAddAverage) { AddAverageActivity.start(this) }
+        bind(viewModel.goToAddAverage) { AddAverageActivity.start(this, REQUEST_CODE, this) }
+        bind(viewModel.listAddAverage) { adapter.submitList(it) }
     }
 
     private fun setupAdapters() {
@@ -41,6 +52,9 @@ class AverageActivity : BaseActivity() {
     }
 
     companion object {
+        private const val EXTRA_AVERAGE = "extra_average"
+        private const val REQUEST_CODE = 2
+
         fun start(context: Context) {
             context.startActivity(Intent(context, AverageActivity::class.java))
         }

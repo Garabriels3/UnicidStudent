@@ -50,7 +50,7 @@
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/hundred_value"
                 android:layout_marginStart="@dimen/twenty_four_value"
-                android:layout_marginTop="@dimen/forty_four_value"
+                android:layout_marginTop="@dimen/twenty_four_value"
                 android:layout_marginEnd="@dimen/twenty_four_value"
                 android:backgroundTint="@color/white"
                 android:clickable="true"
@@ -65,8 +65,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="true"
-                    android:onClick="@{() -> viewModel.goToAddAverageScreen()}"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.goToAddAverageScreen()}">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_add"
@@ -112,14 +112,14 @@
                 android:id="@+id/rv_average_list"
                 android:layout_width="@dimen/zero_value"
                 android:layout_height="@dimen/zero_value"
-                android:layout_marginTop="@dimen/twenty_four_value"
+                android:layout_marginBottom="@dimen/twelve_value"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/v_divider"
-                tools:itemCount="3"
+                tools:itemCount="8"
                 tools:listitem="@layout/item_average" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

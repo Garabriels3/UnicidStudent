@@ -1,6 +1,7 @@
 package br.com.data.repository
 
 import br.com.data.source.remote.registerDataSource.RegisterRemoteDataSource
+import br.com.domain.entity.AddAverage
 import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.entity.User

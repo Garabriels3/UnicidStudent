@@ -1,5 +1,7 @@
 package br.com.domain.usecase.addAverageUseCase
 
+import br.com.domain.entity.AddAverage
+import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.repository.AddAverageRepository
 
@@ -17,5 +19,13 @@ class AddAverageUseCaseImpl(
             currentSemester,
             get
         )
+    }
+
+    override suspend fun getStudentNote(token: String, get: (List<AddAverage>?) -> Unit) {
+        return addAverageRepository.getStudentNote(token, get)
+    }
+
+    override suspend fun addStudentNote(addAverage: AddAverage, token: String): FirebaseResponse {
+        return addAverageRepository.addStudentNote(addAverage, token)
     }
 }

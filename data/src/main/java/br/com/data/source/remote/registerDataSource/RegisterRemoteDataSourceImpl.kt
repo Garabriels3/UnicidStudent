@@ -4,6 +4,7 @@ import android.util.Log
 import br.com.data.mapper.Mapper
 import br.com.data.source.remote.service.firebase.FirebaseAuth
 import br.com.data.source.remote.service.firebase.dao.UserDao
+import br.com.domain.entity.AddAverage
 import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.entity.User
@@ -18,7 +19,7 @@ class RegisterRemoteDataSourceImpl(
 ) : RegisterRemoteDataSource {
 
     override suspend fun createAccount(email: String, password: String): FirebaseResponse {
-        return  firebaseAuth.createAccount(email, password)
+        return firebaseAuth.createAccount(email, password)
     }
 
     override suspend fun createAccountStore(user: User?): FirebaseResponse {

@@ -1,5 +1,7 @@
 package br.com.unicidapp.ui.average.addAverage
 
+import br.com.domain.entity.AddAverage
+
 class AddAverageForm {
 
     var a1: String = ""
@@ -17,5 +19,13 @@ class AddAverageForm {
 
     fun shouldEnableButton(): Boolean {
         return firstNoteIsValid() || secondNoteIsValid() && disciplineIsValid()
+    }
+
+    fun build(): AddAverage {
+        return AddAverage(
+            a1 = a1,
+            a2 = a2,
+            discipline = discipline
+        )
     }
 }

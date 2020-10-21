@@ -1,5 +1,6 @@
 package br.com.domain.usecase.RegisterUseCase
 
+import br.com.domain.entity.AddAverage
 import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.entity.User

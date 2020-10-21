@@ -1,9 +1,7 @@
 package br.com.data.di
 
-import br.com.data.mapper.DocumentSnapshotToSelectionItemMapper
-import br.com.data.mapper.DocumentSnapshotToUserMapper
-import br.com.data.mapper.Mapper
-import br.com.data.mapper.QuerySnapshotToSelectedItemMapper
+import br.com.data.mapper.*
+import br.com.domain.entity.AddAverage
 import br.com.domain.entity.SelectionItem
 import br.com.domain.entity.User
 import com.google.firebase.firestore.DocumentSnapshot
@@ -22,6 +20,9 @@ object MapperModules {
     const val documentSnapshotToUserMapper =
         "DocumentSnapshotToUserMapper"
 
+    const val querySnapshotToAddAverageMapper =
+        "QuerySnapshotToAddAverageMapper"
+
     val mapperModules = module {
         single<Mapper<QuerySnapshot, List<SelectionItem>?>>(
             named(querySnapshotToSelectionItemMapper)
@@ -39,6 +40,12 @@ object MapperModules {
             named(documentSnapshotToUserMapper)
         ) {
             DocumentSnapshotToUserMapper()
+        }
+
+        single<Mapper<QuerySnapshot, List<AddAverage>?>>(
+            named(querySnapshotToAddAverageMapper)
+        ) {
+            QuerySnapshotToAddAverageMapper()
         }
     }
 }

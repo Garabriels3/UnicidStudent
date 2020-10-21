@@ -1,9 +1,11 @@
 package br.com.unicidapp.ui.average.addAverage
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import br.com.domain.entity.AddAverage
 import br.com.domain.entity.SelectionItem
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityAddAverageBinding
@@ -31,6 +33,7 @@ class AddAverageActivity : BaseActivity() {
     override fun subscribeUi() {
         bind(viewModel.openDisciplineNameSheet, ::openDisciplineSheet)
         bind(viewModel.hideKeyboard) { hideKeyboard() }
+        bind(viewModel.finishActivity) { if (it) finishActivity() }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,11 +56,17 @@ class AddAverageActivity : BaseActivity() {
         }.also { it.show(supportFragmentManager, EMPTY_TEXT) }
     }
 
+    private fun finishActivity() {
+        finish()
+    }
+
     companion object {
         private const val EMPTY_TEXT = ""
+        private const val EXTRA_AVERAGE = "extra_average"
 
-        fun start(context: Context) {
-            context.startActivity(Intent(context, AddAverageActivity::class.java))
+        fun start(activity: Activity?, requestCode: Int, context: Context) {
+            val intent = Intent(activity, AddAverageActivity::class.java)
+            activity?.startActivityForResult(intent, requestCode)
         }
     }
 }

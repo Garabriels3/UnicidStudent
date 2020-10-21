@@ -1,12 +1,17 @@
 package br.com.unicidapp.ui.average.addAverage
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.OnLifecycleEvent
+import br.com.domain.entity.AddAverage
+import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.storange.Cache
 import br.com.domain.usecase.addAverageUseCase.AddAverageUseCase
 import br.com.unicidapp.utils.base.BaseViewModel
+import br.com.unicidapp.utils.extensions.trigger
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
 
 class AddAverageViewModel(
@@ -17,11 +22,15 @@ class AddAverageViewModel(
     val openDisciplineNameSheet: LiveData<List<SelectionItem>> get() = _openDisciplineNameSheet
     val listDisciplineNameOptions: LiveData<List<SelectionItem>> get() = _listDisciplineNameOptions
     val enableRegisterButton: LiveData<Boolean> get() = _enableRegisterButton
+    val addAverage: LiveData<AddAverage> get() = _addAverage
+    val finishActivity: LiveData<Boolean> get() = _finishActivity
 
     private val _openDisciplineNameSheet: FlexibleLiveData<List<SelectionItem>> = FlexibleLiveData()
     private val _enableRegisterButton: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _listDisciplineNameOptions: FlexibleLiveData<List<SelectionItem>> =
         FlexibleLiveData()
+    private val _addAverage: FlexibleLiveData<AddAverage> = FlexibleLiveData()
+    private val _finishActivity: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
     private val addAverageForm = AddAverageForm()
 
@@ -54,12 +63,31 @@ class AddAverageViewModel(
     fun onFirstNoteChanged(text: CharSequence?) {
         text?.let {
             addAverageForm.a1 = it.toString()
+            _enableRegisterButton.value = addAverageForm.shouldEnableButton()
         }
     }
 
     fun onSecondNoteChanged(text: CharSequence?) {
         text?.let {
             addAverageForm.a2 = it.toString()
+            _enableRegisterButton.value = addAverageForm.shouldEnableButton()
+        }
+    }
+
+    fun onSaveNote() {
+        cache.getString(ID_KEY, "")?.let {
+            launch(baseLoading) {
+                addAverageUseCase.addStudentNote(addAverageForm.build(), it)
+                    .handleAddStudentResultResult()
+            }
+        }
+    }
+
+    private fun FirebaseResponse.handleAddStudentResultResult() {
+        if (this.isSuccess()) {
+            _finishActivity.trigger()
+        } else {
+            Log.d(TAG, "DEU ERRO NO ENVIO DA NOTA")
         }
     }
 

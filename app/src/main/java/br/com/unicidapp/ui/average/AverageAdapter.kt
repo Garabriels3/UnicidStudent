@@ -1,7 +1,6 @@
 package br.com.unicidapp.ui.average
 
 import br.com.domain.entity.AddAverage
-import br.com.domain.entity.DisciplineAverage
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ItemAverageBinding
 import br.com.unicidapp.utils.base.adapter.BaseAdapter

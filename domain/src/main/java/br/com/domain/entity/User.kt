@@ -8,8 +8,3 @@ data class User(
     var courseName: String? = null,
     var semester: String? = null
 )
-
-data class SubTest(
-    val teste: String,
-    val listNota: List<String>
-)

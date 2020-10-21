@@ -6,6 +6,7 @@ class AddAverageForm {
 
     var a1: String = ""
     var a2: String = ""
+    var totalNote: String = ""
     var discipline: String = ""
     var semester: String = ""
     var courseName: String = ""
@@ -25,7 +26,8 @@ class AddAverageForm {
         return AddAverage(
             a1 = a1,
             a2 = a2,
-            discipline = discipline
+            discipline = discipline,
+            totalNote = totalNote
         )
     }
 }

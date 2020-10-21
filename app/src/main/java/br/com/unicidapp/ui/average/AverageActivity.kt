@@ -24,15 +24,6 @@ class AverageActivity : BaseActivity() {
         setupAdapters()
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        intent.extras?.let {
-            (it.getSerializable(EXTRA_AVERAGE) as? List<AddAverage>)?.let { listAddAverage ->
-
-            }
-        }
-    }
-
     override fun setupScreen() {
         setupToolbar(
             binding.toolbar,
@@ -52,7 +43,6 @@ class AverageActivity : BaseActivity() {
     }
 
     companion object {
-        private const val EXTRA_AVERAGE = "extra_average"
         private const val REQUEST_CODE = 2
 
         fun start(context: Context) {

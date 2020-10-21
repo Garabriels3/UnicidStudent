@@ -77,10 +77,20 @@ class AddAverageViewModel(
     fun onSaveNote() {
         cache.getString(ID_KEY, "")?.let {
             launch(baseLoading) {
+                calculateTotalNote()
                 addAverageUseCase.addStudentNote(addAverageForm.build(), it)
                     .handleAddStudentResultResult()
             }
         }
+    }
+
+    private fun calculateTotalNote() {
+        val a1 = addAverageForm.a1.toDouble()
+        val a2 = addAverageForm.a2.toDouble()
+
+        val total = a1 + a2
+
+        addAverageForm.totalNote = total.toString()
     }
 
     private fun FirebaseResponse.handleAddStudentResultResult() {

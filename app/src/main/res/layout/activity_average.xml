@@ -41,9 +41,10 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/ic_left_arrow_black"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="Adicionar Nota"
-                app:titleTextAppearance="@style/PoppinsRegularAppearance"
-                app:titleTextColor="@color/blue_unicid" />
+                app:titleTextAppearance="@style/PoppinsExtraLightAppearanceToolbar"
+                app:titleTextColor="@color/blue_unicid"
+                tools:theme="@style/Widget.AppCompat.ActionBar.Solid"
+                tools:title="Adicionar Nota" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_add"
@@ -85,13 +86,14 @@
                         android:layout_marginEnd="@dimen/thirty_two_value"
                         android:text="@string/add_label"
                         android:textAlignment="center"
-                        android:textAppearance="@style/PoppinsRegularAppearance"
+                        android:textAppearance="@style/PoppinsLightAppearance"
                         android:textColor="@color/blue_unicid"
-                        android:textSize="@dimen/twenty_four_size"
+                        android:textSize="@dimen/twenty_size"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/iv_add"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:fontFamily="@font/poppins_light" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

@@ -58,7 +58,7 @@ object DataModules {
 
         single<RegisterRemoteDataSource> {
             RegisterRemoteDataSourceImpl(
-                get(), get(), get(named(querySnapshotToSelectionItemMapper))
+                get(), get(), get(), get(named(querySnapshotToSelectionItemMapper))
             )
         }
 

@@ -15,5 +15,12 @@ class CourseDao : BaseFirestoreDao<DisciplineList>() {
 
     companion object {
         const val GRID_COLLECTION = "grid"
+        const val A1 = "a1"
+        const val A2 = "a2"
+        const val DISCIPLINE = "discipline"
+        const val IS_AF = "isAf"
+        const val TOTAL_NOTE = "totalNote"
+        const val AF = "af"
+        const val AFF = "aff"
     }
 }

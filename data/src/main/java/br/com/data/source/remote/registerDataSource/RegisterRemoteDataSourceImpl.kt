@@ -3,6 +3,7 @@ package br.com.data.source.remote.registerDataSource
 import android.util.Log
 import br.com.data.mapper.Mapper
 import br.com.data.source.remote.service.firebase.FirebaseAuth
+import br.com.data.source.remote.service.firebase.dao.CourseDao
 import br.com.data.source.remote.service.firebase.dao.UserDao
 import br.com.domain.entity.AddAverage
 import br.com.domain.entity.FirebaseResponse
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot
 class RegisterRemoteDataSourceImpl(
     private val firebaseAuth: FirebaseAuth,
     private val userDao: UserDao,
+    private val courseDao: CourseDao,
     private val mapperOut: Mapper<QuerySnapshot, List<SelectionItem>>
 ) : RegisterRemoteDataSource {
 
@@ -33,7 +35,7 @@ class RegisterRemoteDataSourceImpl(
 
     override suspend fun getGrid(get: (List<SelectionItem>) -> Unit) {
         try {
-            userDao.findAll().addSnapshotListener { document, exception ->
+            courseDao.collection().addSnapshotListener { document, exception ->
                 if (exception != null) {
                     Log.w(javaClass.name, "listen:error", exception)
                     return@addSnapshotListener

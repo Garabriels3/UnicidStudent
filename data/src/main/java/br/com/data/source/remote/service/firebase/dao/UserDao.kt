@@ -47,10 +47,6 @@ class UserDao : BaseFirestoreDao<User>() {
         return token?.let { collection().document(it) }
     }
 
-    fun findAll(): Query {
-        return collection()
-    }
-
     companion object {
         const val NAME = "name"
         const val RGM = "rgm"

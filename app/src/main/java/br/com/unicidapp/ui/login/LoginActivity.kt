@@ -8,6 +8,7 @@ import br.com.unicidapp.databinding.ActivityLoginBinding
 import br.com.unicidapp.ui.average.AverageActivity
 import br.com.unicidapp.ui.component.CustomDialog
 import br.com.unicidapp.ui.component.DialogState
+import br.com.unicidapp.ui.home.HomeActivity
 import br.com.unicidapp.ui.register.RegisterActivity
 import br.com.unicidapp.utils.applyDrawable
 import br.com.unicidapp.utils.base.BaseActivity
@@ -41,7 +42,7 @@ class LoginActivity : BaseActivity() {
         bind(viewModel.onStartRegister) { RegisterActivity.start(this) }
         bind(viewModel.hideKeyboard) { hideKeyboard() }
         bind(viewModel.onErrorDialog, ::onErrorLogin)
-        bind(viewModel.goToHome) { AverageActivity.start(this) }
+        bind(viewModel.goToHome) { HomeActivity.start(this) }
     }
 
     private fun shouldEnableSignInButton(enable: Boolean) {

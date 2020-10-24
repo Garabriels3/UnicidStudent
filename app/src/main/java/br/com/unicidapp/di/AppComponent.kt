@@ -1,6 +1,7 @@
 package br.com.unicidapp.di
 
 import br.com.data.di.MapperModules.mapperModules
+import br.com.unicidapp.di.AppModules.utilsModules
 import br.com.unicidapp.di.AppModules.viewModelModules
 import br.com.unicidapp.di.DataModules.dataModules
 import br.com.unicidapp.di.DomainModules.domainModules
@@ -16,7 +17,7 @@ object AppComponent {
         )
 
     private fun getAppModules(): Array<Module> {
-        return arrayOf(viewModelModules)
+        return arrayOf(utilsModules, viewModelModules)
     }
 
     private fun getDataModules(): Array<Module> {

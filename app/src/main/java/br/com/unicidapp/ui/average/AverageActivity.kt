@@ -2,13 +2,14 @@ package br.com.unicidapp.ui.average
 
 import android.content.Context
 import android.content.Intent
+import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
-import br.com.domain.entity.AddAverage
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityAverageBinding
 import br.com.unicidapp.ui.average.addAverage.AddAverageActivity
 import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
+import br.com.unicidapp.utils.extensions.hideKeyboard
 import br.com.unicidapp.utils.extensions.setupToolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,8 +34,19 @@ class AverageActivity : BaseActivity() {
     }
 
     override fun subscribeUi() {
-        bind(viewModel.goToAddAverage) { AddAverageActivity.start(this, REQUEST_CODE, this) }
+        bind(viewModel.goToAddAverage) { AddAverageActivity.start(this, REQUEST_CODE) }
         bind(viewModel.listAddAverage) { adapter.submitList(it) }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                hideKeyboard()
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setupAdapters() {

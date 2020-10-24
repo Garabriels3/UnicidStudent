@@ -85,12 +85,16 @@ class AddAverageViewModel(
     }
 
     private fun calculateTotalNote() {
-        val a1 = addAverageForm.a1.toDouble()
-        val a2 = addAverageForm.a2.toDouble()
+        val a1 = addAverageForm.a1.toFloat()
+        val a2 = addAverageForm.a2.toFloat()
 
         val total = a1 + a2
 
         addAverageForm.totalNote = total.toString()
+        addAverageForm.isAf = total < 6.0
+        if(addAverageForm.isAf == true) {
+            addAverageForm.isAfString = "true"
+        }
     }
 
     private fun FirebaseResponse.handleAddStudentResultResult() {

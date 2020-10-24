@@ -1,15 +1,14 @@
 package br.com.unicidapp.ui.average.addAverage
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
-import br.com.domain.entity.AddAverage
 import br.com.domain.entity.SelectionItem
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityAddAverageBinding
 import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
+import br.com.unicidapp.utils.DefaultMasks
 import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.hideKeyboard
@@ -24,6 +23,7 @@ class AddAverageActivity : BaseActivity() {
     override fun onCreate() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_average)
         binding.viewModel = viewModel
+        setupMask()
     }
 
     override fun setupScreen() {
@@ -47,6 +47,21 @@ class AddAverageActivity : BaseActivity() {
         }
     }
 
+    private fun setupMask() {
+        binding.etA1.addTextChangedListener(
+            DefaultMasks.insert(
+                binding.etA1,
+                DefaultMasks.DECIMAL_MASK
+            )
+        )
+        binding.etA2.addTextChangedListener(
+            DefaultMasks.insert(
+                binding.etA2,
+                DefaultMasks.DECIMAL_MASK
+            )
+        )
+    }
+
     private fun openDisciplineSheet(listDiscipline: List<SelectionItem>) {
         OptionDialogFragment(
             listDiscipline, "Selecione a disciplina"
@@ -64,7 +79,7 @@ class AddAverageActivity : BaseActivity() {
         private const val EMPTY_TEXT = ""
         private const val EXTRA_AVERAGE = "extra_average"
 
-        fun start(activity: Activity?, requestCode: Int, context: Context) {
+        fun start(activity: Activity?, requestCode: Int) {
             val intent = Intent(activity, AddAverageActivity::class.java)
             activity?.startActivityForResult(intent, requestCode)
         }

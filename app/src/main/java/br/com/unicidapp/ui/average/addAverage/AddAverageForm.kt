@@ -11,6 +11,8 @@ class AddAverageForm {
     var semester: String = ""
     var courseName: String = ""
     var af: String? = ""
+    var isAf: Boolean? = false
+    var isAfString: String? = "false"
 
     private fun firstNoteIsValid(): Boolean = a1.isNotEmpty()
 
@@ -27,7 +29,8 @@ class AddAverageForm {
             a1 = a1,
             a2 = a2,
             discipline = discipline,
-            totalNote = totalNote
+            totalNote = totalNote,
+            isAff = isAfString
         )
     }
 }

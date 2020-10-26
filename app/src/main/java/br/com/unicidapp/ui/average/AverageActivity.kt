@@ -36,6 +36,7 @@ class AverageActivity : BaseActivity() {
     override fun subscribeUi() {
         bind(viewModel.goToAddAverage) { AddAverageActivity.start(this, REQUEST_CODE) }
         bind(viewModel.listAddAverage) { adapter.submitList(it) }
+        bind(viewModel.goToDetailsAddAverage) { AddAverageActivity.start(this, REQUEST_CODE, it) }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -50,7 +51,7 @@ class AverageActivity : BaseActivity() {
     }
 
     private fun setupAdapters() {
-        adapter = AverageAdapter()
+        adapter = AverageAdapter(viewModel::onHomeMenuClick)
         binding.rvAverageList.adapter = adapter
     }
 

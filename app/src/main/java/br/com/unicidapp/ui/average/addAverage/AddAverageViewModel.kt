@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.OnLifecycleEvent
-import br.com.domain.entity.AddAverage
 import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.storange.Cache
@@ -21,15 +20,13 @@ class AddAverageViewModel(
 
     val openDisciplineNameSheet: LiveData<List<SelectionItem>> get() = _openDisciplineNameSheet
     val listDisciplineNameOptions: LiveData<List<SelectionItem>> get() = _listDisciplineNameOptions
-    val enableRegisterButton: LiveData<Boolean> get() = _enableRegisterButton
-    val addAverage: LiveData<AddAverage> get() = _addAverage
+    val enableSaveButton: LiveData<Boolean> get() = _enableSaveButton
     val finishActivity: LiveData<Boolean> get() = _finishActivity
 
     private val _openDisciplineNameSheet: FlexibleLiveData<List<SelectionItem>> = FlexibleLiveData()
-    private val _enableRegisterButton: FlexibleLiveData<Boolean> = FlexibleLiveData()
+    private val _enableSaveButton: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _listDisciplineNameOptions: FlexibleLiveData<List<SelectionItem>> =
         FlexibleLiveData()
-    private val _addAverage: FlexibleLiveData<AddAverage> = FlexibleLiveData()
     private val _finishActivity: FlexibleLiveData<Boolean> = FlexibleLiveData()
 
     private val addAverageForm = AddAverageForm()
@@ -55,7 +52,7 @@ class AddAverageViewModel(
     fun setCourseNameChanged(options: List<SelectionItem>?) {
         options?.let {
             addAverageForm.discipline = it.find { item -> item.isSelected }?.description.toString()
-            _enableRegisterButton.value = addAverageForm.shouldEnableButton()
+            _enableSaveButton.value = addAverageForm.shouldEnableButton()
         }
         _listDisciplineNameOptions.value = options
     }
@@ -63,14 +60,21 @@ class AddAverageViewModel(
     fun onFirstNoteChanged(text: CharSequence?) {
         text?.let {
             addAverageForm.a1 = it.toString()
-            _enableRegisterButton.value = addAverageForm.shouldEnableButton()
+            _enableSaveButton.value = addAverageForm.shouldEnableButton()
         }
     }
 
     fun onSecondNoteChanged(text: CharSequence?) {
         text?.let {
             addAverageForm.a2 = it.toString()
-            _enableRegisterButton.value = addAverageForm.shouldEnableButton()
+            _enableSaveButton.value = addAverageForm.shouldEnableButton()
+        }
+    }
+
+    fun onAfNoteChanged(text: CharSequence?) {
+        text?.let {
+            addAverageForm.af = it.toString()
+            _enableSaveButton.value = addAverageForm.shouldEnableButton()
         }
     }
 
@@ -92,6 +96,11 @@ class AddAverageViewModel(
 
         addAverageForm.totalNote = total.toString()
         addAverageForm.isAf = total < 6.0F
+        addAverageForm.isApprove = total >= 6.0F
+    }
+
+    private fun calculateAfNote() {
+
     }
 
     private fun FirebaseResponse.handleAddStudentResultResult() {

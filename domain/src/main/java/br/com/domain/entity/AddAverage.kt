@@ -8,5 +8,7 @@ data class AddAverage(
     val discipline: String? = "null",
     val afNote: String? = "null",
     val totalNote: String? = "0",
-    val afState: Boolean? = false
+    val afState: Boolean? = false,
+    val reproveState: Boolean? = false,
+    val approveState: Boolean? = false
 ) : Serializable

@@ -11,7 +11,6 @@ import br.com.unicidapp.ui.login.LoginActivity
 import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
 import br.com.unicidapp.utils.extensions.shouldShowInvisible
-import br.com.unicidapp.utils.extensions.shouldShowView
 import br.com.unicidapp.utils.extensions.shouldStartShimmer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

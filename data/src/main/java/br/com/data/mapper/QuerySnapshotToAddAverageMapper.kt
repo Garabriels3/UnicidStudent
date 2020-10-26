@@ -15,7 +15,9 @@ class QuerySnapshotToAddAverageMapper : Mapper<QuerySnapshot, List<AddAverage>?>
                 afNote = addAverageMap.afNote,
                 totalNote = addAverageMap.totalNote,
                 discipline = addAverageMap.discipline,
-                afState = addAverageMap.afState
+                afState = addAverageMap.afState,
+                approveState = addAverageMap.approveState,
+                reproveState = addAverageMap.reproveState
             )
         }
     }

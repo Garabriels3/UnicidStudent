@@ -10,17 +10,21 @@ class AddAverageForm {
     var discipline: String = ""
     var semester: String = ""
     var courseName: String = ""
-    var af: String? = ""
+    var af: String = ""
     var isAf: Boolean? = null
+    var isReprove: Boolean? = null
+    var isApprove: Boolean? = null
 
     private fun firstNoteIsValid(): Boolean = a1.isNotEmpty()
 
     private fun secondNoteIsValid(): Boolean = a2.isNotEmpty()
 
+    private fun afNoteIsValid(): Boolean = af.isNotEmpty()
+
     private fun disciplineIsValid(): Boolean = discipline.isNotEmpty()
 
     fun shouldEnableButton(): Boolean {
-        return firstNoteIsValid() || secondNoteIsValid() && disciplineIsValid()
+        return firstNoteIsValid() && secondNoteIsValid() && disciplineIsValid() || afNoteIsValid()
     }
 
     fun build(): AddAverage {
@@ -29,7 +33,10 @@ class AddAverageForm {
             a2 = a2,
             discipline = discipline,
             totalNote = totalNote,
-            afState = isAf
+            afState = isAf,
+            approveState = isApprove,
+            reproveState = isReprove,
+            afNote = af
         )
     }
 }

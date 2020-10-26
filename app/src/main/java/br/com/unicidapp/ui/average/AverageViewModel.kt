@@ -6,6 +6,8 @@ import androidx.lifecycle.OnLifecycleEvent
 import br.com.domain.entity.AddAverage
 import br.com.domain.storange.Cache
 import br.com.domain.usecase.addAverageUseCase.AddAverageUseCase
+import br.com.unicidapp.parcelable.HomeMenu
+import br.com.unicidapp.ui.home.HomeViewModel
 import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.extensions.trigger
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
@@ -17,9 +19,11 @@ class AverageViewModel(
 
     val goToAddAverage: LiveData<Boolean> get() = _goToAddAverage
     val listAddAverage: LiveData<List<AddAverage>> get() = _listAddAverage
+    val goToDetailsAddAverage: LiveData<AddAverage> get() = _goToDetailsAddAverage
 
     private val _goToAddAverage: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _listAddAverage: FlexibleLiveData<List<AddAverage>> = FlexibleLiveData()
+    private val _goToDetailsAddAverage: FlexibleLiveData<AddAverage> = FlexibleLiveData()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     @SuppressWarnings("unused")
@@ -31,6 +35,10 @@ class AverageViewModel(
                 }
             }
         }
+    }
+
+    fun onHomeMenuClick(average: AddAverage) {
+        _goToDetailsAddAverage.value = average
     }
 
     fun goToAddAverageScreen() {

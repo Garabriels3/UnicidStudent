@@ -42,6 +42,7 @@
             android:layout_marginStart="@dimen/sixteen_value"
             android:layout_marginTop="@dimen/thirty_two_value"
             android:layout_marginEnd="@dimen/sixteen_value"
+            android:hint="@string/select_discipline_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -81,7 +82,7 @@
             android:onTextChanged="@{(text, start, before, count) -> viewModel.onFirstNoteChanged(text)}"
             android:padding="@dimen/sixteen_value"
             android:textColor="@color/blue_unicid"
-            android:textColorHint="@color/blue_unicid"
+            android:textColorHint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_course" />
@@ -101,10 +102,31 @@
             android:onTextChanged="@{(text, start, before, count) -> viewModel.onSecondNoteChanged(text)}"
             android:padding="@dimen/sixteen_value"
             android:textColor="@color/blue_unicid"
-            android:textColorHint="@color/blue_unicid"
+            android:textColorHint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_a1" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_af"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="@dimen/fifty_two_size"
+            android:layout_marginStart="@dimen/sixteen_value"
+            android:layout_marginTop="@dimen/sixteen_value"
+            android:layout_marginEnd="@dimen/sixteen_value"
+            android:background="@drawable/shape_round_corners"
+            android:hint="@string/label_hint_af"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:maxLines="1"
+            android:onTextChanged="@{(text, start, before, count) -> viewModel.onAfNoteChanged(text)}"
+            android:padding="@dimen/sixteen_value"
+            android:textColor="@color/blue_unicid"
+            android:textColorHint="@color/gray"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_a2" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_login"
@@ -113,7 +135,7 @@
             android:layout_marginStart="@dimen/fifty_two_value"
             android:layout_marginEnd="@dimen/fifty_two_value"
             android:layout_marginBottom="@dimen/thirty_two_value"
-            android:background="@drawable/circle_green_button"
+            android:background="@drawable/circle_gray_button"
             android:onClick="@{() -> viewModel.onSaveNote()}"
             android:text="@string/save_button_label"
             android:textAppearance="@style/PoppinsSemiBoldAppearance"

@@ -9,17 +9,75 @@ import br.com.unicidapp.utils.base.adapter.BaseAdapter
 import br.com.unicidapp.utils.extensions.adapterDataBindingCast
 
 @SuppressLint("ResourceAsColor")
-class AverageAdapter : BaseAdapter<AddAverage>(
+class AverageAdapter(
+    onItemClicked: (average: AddAverage) -> Unit
+) : BaseAdapter<AddAverage>(
     R.layout.item_average, { average, view ->
         with(view.adapterDataBindingCast<ItemAverageBinding>()) {
             this.averageModel = average
 
-            average.afState?.let {
-                if (it) {
+            cvAdd.setOnClickListener {
+                onItemClicked.invoke(average)
+            }
+
+            when {
+                average.afState == true -> {
+                    tvAverage.setTextColor(
+                        ContextCompat.getColor(
+                            tvAverage.context,
+                            R.color.white
+                        )
+                    )
+                    tvAverageDescription.setTextColor(
+                        ContextCompat.getColor(
+                            tvAverageDescription.context,
+                            R.color.white
+                        )
+                    )
                     llAverage.setBackgroundColor(
                         ContextCompat.getColor(
                             llAverage.context,
                             R.color.flushOrange
+                        )
+                    )
+                }
+                average.approveState == true -> {
+                    tvAverage.setTextColor(
+                        ContextCompat.getColor(
+                            tvAverage.context,
+                            R.color.white
+                        )
+                    )
+                    tvAverageDescription.setTextColor(
+                        ContextCompat.getColor(
+                            tvAverageDescription.context,
+                            R.color.white
+                        )
+                    )
+                    llAverage.setBackgroundColor(
+                        ContextCompat.getColor(
+                            llAverage.context,
+                            R.color.cerulean
+                        )
+                    )
+                }
+                average.reproveState == true -> {
+                    tvAverage.setTextColor(
+                        ContextCompat.getColor(
+                            tvAverage.context,
+                            R.color.white
+                        )
+                    )
+                    tvAverageDescription.setTextColor(
+                        ContextCompat.getColor(
+                            tvAverageDescription.context,
+                            R.color.white
+                        )
+                    )
+                    llAverage.setBackgroundColor(
+                        ContextCompat.getColor(
+                            llAverage.context,
+                            R.color.red
                         )
                     )
                 }

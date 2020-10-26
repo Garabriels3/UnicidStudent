@@ -12,10 +12,10 @@ class QuerySnapshotToAddAverageMapper : Mapper<QuerySnapshot, List<AddAverage>?>
             AddAverage(
                 a1 = addAverageMap.a1,
                 a2 = addAverageMap.a2,
-                af = addAverageMap.af,
+                afNote = addAverageMap.afNote,
                 totalNote = addAverageMap.totalNote,
                 discipline = addAverageMap.discipline,
-                isAff = addAverageMap.aff
+                afState = addAverageMap.afState
             )
         }
     }

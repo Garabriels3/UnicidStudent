@@ -3,6 +3,7 @@ package br.com.data.source.remote.service.firebase
 import br.com.domain.entity.FirebaseResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
 
 class FirebaseAuth {
@@ -15,7 +16,7 @@ class FirebaseAuth {
                 auth.createUserWithEmailAndPassword(email, password).await().user?.uid
             FirebaseResponse(userUid = user)
         } catch (e: FirebaseAuthException) {
-            FirebaseResponse(errorMessage = e.toString())
+            FirebaseResponse(errorMessage = e.message)
         }
     }
 
@@ -24,7 +25,23 @@ class FirebaseAuth {
             val user = auth.signInWithEmailAndPassword(email, password).await().user?.uid
             FirebaseResponse(userUid = user)
         } catch (e: FirebaseAuthException) {
-            FirebaseResponse(errorMessage = e.toString())
+            FirebaseResponse(errorMessage = e.message)
         }
+    }
+
+    fun logoutAccount(): FirebaseResponse {
+        return try {
+            auth.signOut()
+            FirebaseResponse()
+        } catch (e: FirebaseAuthException) {
+            FirebaseResponse(errorMessage = e.message)
+        }
+    }
+
+    fun getCurrentUser(): FirebaseResponse {
+        return if (auth.currentUser != null)
+            FirebaseResponse(userUid = auth.currentUser?.uid)
+        else
+            FirebaseResponse(errorMessage = "Erro ao recuparar uid")
     }
 }

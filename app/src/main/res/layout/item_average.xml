@@ -52,6 +52,7 @@
                         android:layout_marginTop="@dimen/thirty_six_value"
                         android:text="@{averageModel.totalNote}"
                         android:textAlignment="center"
+                        android:maxLength="3"
                         android:textAppearance="@style/PoppinsSemiBoldAppearance"
                         android:textColor="@color/blue_unicid"
                         android:textSize="@dimen/twenty_four_size"

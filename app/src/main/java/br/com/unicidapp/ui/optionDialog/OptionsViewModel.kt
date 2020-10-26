@@ -20,5 +20,4 @@ class OptionsViewModel : ViewModel() {
     fun onConfirmClick() {
         _onConfirmOption.value = Unit
     }
-
 }

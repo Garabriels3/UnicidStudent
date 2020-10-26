@@ -7,6 +7,5 @@ interface Cache {
     fun setString(key: String, value: String?)
     fun setInt(key: String, value: Int?)
     fun setBoolean(key: String, value: Boolean?)
-    fun clear()
     class NotFoundException : Exception()
 }

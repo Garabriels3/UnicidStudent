@@ -21,20 +21,29 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
     private val uiScope = CoroutineScope(Dispatchers.Main + Job())
 
     protected fun launch(
-        loadingLiveData: MutableLiveData<Boolean>,
+        loadingLiveData: MutableLiveData<Boolean>? = null,
+        launchWithDelay: Boolean = false,
+        delay: Long = DEFAULT_DELAY,
         block: suspend CoroutineScope.() -> Unit
     ) = uiScope.launch {
         try {
-            loadingLiveData.trigger()
+            loadingLiveData?.value = true
+            if (launchWithDelay) delay(delay)
             block()
         } catch (e: Exception) {
             Log.d("Execption Key", e.toString())
         } finally {
-            loadingLiveData.value = false
+            loadingLiveData?.value = false
         }
     }
 
     fun dismissKeyboard() {
         baseHideKeyboard.trigger()
+    }
+
+    companion object {
+        const val EMPTY_TEXT = ""
+        const val DEFAULT_DELAY = 750L
+        const val NO_VALUE_LONG = -1L
     }
 }

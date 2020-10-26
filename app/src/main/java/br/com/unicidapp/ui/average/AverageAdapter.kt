@@ -1,6 +1,7 @@
 package br.com.unicidapp.ui.average
 
 import android.annotation.SuppressLint
+import androidx.core.content.ContextCompat
 import br.com.domain.entity.AddAverage
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ItemAverageBinding
@@ -13,8 +14,15 @@ class AverageAdapter : BaseAdapter<AddAverage>(
         with(view.adapterDataBindingCast<ItemAverageBinding>()) {
             this.averageModel = average
 
-            if (average.isAff.equals("true")) {
-                llAverage.setBackgroundColor(R.color.flushOrange)
+            average.afState?.let {
+                if (it) {
+                    llAverage.setBackgroundColor(
+                        ContextCompat.getColor(
+                            llAverage.context,
+                            R.color.flushOrange
+                        )
+                    )
+                }
             }
         }
     }

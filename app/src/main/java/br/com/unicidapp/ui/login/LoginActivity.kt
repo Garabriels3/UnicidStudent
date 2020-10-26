@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityLoginBinding
-import br.com.unicidapp.ui.average.AverageActivity
 import br.com.unicidapp.ui.component.CustomDialog
 import br.com.unicidapp.ui.component.DialogState
 import br.com.unicidapp.ui.home.HomeActivity
@@ -42,7 +41,7 @@ class LoginActivity : BaseActivity() {
         bind(viewModel.onStartRegister) { RegisterActivity.start(this) }
         bind(viewModel.hideKeyboard) { hideKeyboard() }
         bind(viewModel.onErrorDialog, ::onErrorLogin)
-        bind(viewModel.goToHome) { HomeActivity.start(this) }
+        bind(viewModel.goToHome) { if (it) HomeActivity.start(this) }
     }
 
     private fun shouldEnableSignInButton(enable: Boolean) {

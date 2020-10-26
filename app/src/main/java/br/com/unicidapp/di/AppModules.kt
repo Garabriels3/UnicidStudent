@@ -28,6 +28,6 @@ object AppModules {
         viewModel { SplashViewModel(get()) }
         viewModel { AverageViewModel(get(), get()) }
         viewModel { AddAverageViewModel(get(), get()) }
-        viewModel { HomeViewModel(get()) }
+        viewModel { HomeViewModel(get(), get()) }
     }
 }

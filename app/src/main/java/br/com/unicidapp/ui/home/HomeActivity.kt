@@ -3,11 +3,16 @@ package br.com.unicidapp.ui.home
 import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
+import br.com.domain.entity.User
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityHomeBinding
 import br.com.unicidapp.ui.average.AverageActivity
+import br.com.unicidapp.ui.login.LoginActivity
 import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.bind
+import br.com.unicidapp.utils.extensions.shouldShowInvisible
+import br.com.unicidapp.utils.extensions.shouldShowView
+import br.com.unicidapp.utils.extensions.shouldStartShimmer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity() {
@@ -18,7 +23,12 @@ class HomeActivity : BaseActivity() {
 
     override fun onCreate() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding.viewModel = viewModel
         setupAdapter()
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(false)
     }
 
     override fun setupScreen() {
@@ -27,6 +37,9 @@ class HomeActivity : BaseActivity() {
     override fun subscribeUi() {
         bind(viewModel.localMenuOptions, adapter::submitList)
         bind(viewModel.boletimClick) { AverageActivity.start(this) }
+        bind(viewModel.userInfo, ::setUserName)
+        bind(viewModel.isSignOut) { if (it) LoginActivity.start(this) }
+        bind(viewModel.loading, ::setupShimmers)
     }
 
     private fun setupAdapter() {
@@ -34,6 +47,19 @@ class HomeActivity : BaseActivity() {
             viewModel::onHomeMenuClick
         )
         binding.rvMenu.adapter = adapter
+    }
+
+    private fun setUserName(user: User) {
+        binding.tvName.text = user.name
+        binding.tvRgm.text = user.rgm
+
+    }
+
+    private fun setupShimmers(isLoading: Boolean) {
+        binding.slLoading.shouldStartShimmer(isLoading)
+        binding.tvName.shouldShowInvisible(!isLoading)
+        binding.tvRgm.shouldShowInvisible(!isLoading)
+        binding.ivProfile.shouldShowInvisible(!isLoading)
     }
 
     companion object {

@@ -58,16 +58,20 @@ class SharedPreferencesCache(
         }
     }
 
-    @SuppressLint("CommitPrefEdits")
-    override fun clear() {
-        shouldToDoAction { sharedPreferences.edit().clear() }
-    }
-
     private fun shouldToDoAction(action: () -> SharedPreferences.Editor) {
         if (Build.VERSION.SDK_INT >= minSdkVersion) {
             action.invoke().apply()
         } else {
             throw DataException.MinSDKSharedPreferencesException(minSdkVersion)
         }
+    }
+
+    companion object {
+        private const val COURSE_NAME_KEY = "COURSE_NAME"
+        private const val SEMESTER_KEY = "SEMESTER"
+        private const val USER_NAME_KEY = "USER_NAME"
+        private const val EMAIL_KEY = "EMAIL"
+        private const val ID_KEY = "ID"
+        private const val RGM_KEY = "RGM"
     }
 }

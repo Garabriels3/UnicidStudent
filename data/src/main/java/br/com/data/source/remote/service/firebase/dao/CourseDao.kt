@@ -18,9 +18,8 @@ class CourseDao : BaseFirestoreDao<DisciplineList>() {
         const val A1 = "a1"
         const val A2 = "a2"
         const val DISCIPLINE = "discipline"
-        const val IS_AF = "isAf"
+        const val AF_STATE = "afState"
         const val TOTAL_NOTE = "totalNote"
-        const val AF = "af"
-        const val AFF = "aff"
+        const val AF_NOTE = "afNote"
     }
 }

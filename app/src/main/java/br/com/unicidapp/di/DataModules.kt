@@ -5,11 +5,14 @@ import br.com.data.di.MapperModules.documentSnapshotToUserMapper
 import br.com.data.di.MapperModules.querySnapshotToAddAverageMapper
 import br.com.data.di.MapperModules.querySnapshotToSelectionItemMapper
 import br.com.data.repository.AddAverageRepositoryImpl
+import br.com.data.repository.HomeRepositoryImpl
 import br.com.data.repository.LoginRepositoryImpl
 import br.com.data.repository.RegisterRepositoryImpl
 import br.com.data.source.local.SharedPreferencesCache
 import br.com.data.source.remote.addAverageDataSource.AddAverageRemoteDataSource
 import br.com.data.source.remote.addAverageDataSource.AddAverageRemoteDataSourceImpl
+import br.com.data.source.remote.homeDataSource.HomeRemoteDataSource
+import br.com.data.source.remote.homeDataSource.HomeRemoteDataSourceImpl
 import br.com.data.source.remote.loginDataSource.LoginRemoteDataSource
 import br.com.data.source.remote.loginDataSource.LoginRemoteDataSourceImpl
 import br.com.data.source.remote.registerDataSource.RegisterRemoteDataSource
@@ -17,6 +20,7 @@ import br.com.data.source.remote.registerDataSource.RegisterRemoteDataSourceImpl
 import br.com.data.source.remote.service.firebase.dao.CourseDao
 import br.com.data.source.remote.service.firebase.dao.UserDao
 import br.com.domain.repository.AddAverageRepository
+import br.com.domain.repository.HomeRepository
 import br.com.domain.repository.LoginRepository
 import br.com.domain.repository.RegisterRepository
 import br.com.domain.storange.Cache
@@ -69,6 +73,18 @@ object DataModules {
                         querySnapshotToAddAverageMapper
                     )
                 )
+            )
+        }
+
+        single<HomeRemoteDataSource> {
+            HomeRemoteDataSourceImpl(
+                get(), get(), get(named(documentSnapshotToUserMapper))
+            )
+        }
+
+        single<HomeRepository> {
+            HomeRepositoryImpl(
+                get()
             )
         }
 

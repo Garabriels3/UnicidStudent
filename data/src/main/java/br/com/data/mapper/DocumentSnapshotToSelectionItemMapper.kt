@@ -1,8 +1,6 @@
 package br.com.data.mapper
 
-import br.com.domain.entity.DisciplineList
 import br.com.domain.entity.SelectionItem
-import com.google.firebase.firestore.DocumentSnapshot
 
 class DocumentSnapshotToSelectionItemMapper : Mapper<List<String>, List<SelectionItem>?>() {
 

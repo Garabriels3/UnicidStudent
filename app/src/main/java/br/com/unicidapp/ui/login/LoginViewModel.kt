@@ -47,8 +47,8 @@ class LoginViewModel(
         launch(baseLoading) {
             val result = loginUseCase.loginAccount(loginForm.userName, loginForm.password)
             if (result.isSuccess()) {
-                _goToHome.trigger()
                 getInfo(result.userUid)
+                _goToHome.trigger()
             } else {
                 _onErrorDialog.trigger()
             }

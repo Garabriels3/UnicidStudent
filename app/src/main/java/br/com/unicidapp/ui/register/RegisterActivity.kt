@@ -35,7 +35,7 @@ class RegisterActivity : BaseActivity() {
     }
 
     override fun setupScreen() {
-        setupToolbar(binding.toolbar, true)
+        setupToolbar(binding.toolbar, true, title = getString(R.string.register_title_bar))
         sheet = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
     }
 

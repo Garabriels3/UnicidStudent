@@ -40,7 +40,6 @@ class AddAverageActivity : BaseActivity() {
             when {
                 it.afState == true -> {
                     binding.etAf.shouldShowView(true)
-                    binding.cvShowFinalNote.shouldShowView(false)
                 }
                 it.reproveState == true -> {
                     binding.etAf.apply {

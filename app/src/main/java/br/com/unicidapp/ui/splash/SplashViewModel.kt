@@ -3,16 +3,11 @@ package br.com.unicidapp.ui.splash
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModel
 import br.com.domain.storange.Cache
 import br.com.unicidapp.BuildConfig
 import br.com.unicidapp.utils.base.BaseViewModel
 import br.com.unicidapp.utils.livedata.FlexibleLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-
 
 class SplashViewModel(
     private val cache: Cache
@@ -28,15 +23,6 @@ class SplashViewModel(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     @SuppressWarnings("unused")
-    fun onStartApp() {
-        launch(baseLoading) {
-            delay(delayMillsToDurationSplashScreen)
-            _goToLogin.value = true
-        }
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    @SuppressWarnings("unused")
     fun checkFirstRun() {
         val PREF_VERSION_CODE_KEY = "version_code"
         val DOESNT_EXIST = -1
@@ -47,18 +33,21 @@ class SplashViewModel(
         val savedVersionCode = cache.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST)
 
         // Check for first run or upgrade
-        when {
-            currentVersionCode == savedVersionCode -> {
-                return
-            }
-            savedVersionCode == DOESNT_EXIST -> {
-                _onBoardingInit.value = true
-            }
-            currentVersionCode > savedVersionCode -> {
-                _onBoardingInit.value = true
+        launch(baseLoading) {
+            delay(delayMillsToDurationSplashScreen)
+            _goToLogin.value = true
+            when {
+                currentVersionCode == savedVersionCode -> {
+                    return@launch
+                }
+                savedVersionCode == DOESNT_EXIST -> {
+                    _onBoardingInit.value = true
+                }
+                currentVersionCode > savedVersionCode -> {
+                    _onBoardingInit.value = true
+                }
             }
         }
-
         // Update the shared preferences with the current version code
         cache.setInt(PREF_VERSION_CODE_KEY, currentVersionCode)
     }

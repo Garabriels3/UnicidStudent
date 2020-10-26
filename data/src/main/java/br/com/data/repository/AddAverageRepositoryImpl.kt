@@ -10,7 +10,11 @@ class AddAverageRepositoryImpl(
     private val addAverageRemoteDataSource: AddAverageRemoteDataSource
 ) : AddAverageRepository {
 
-    override suspend fun getDiscipline(courseName: String, currentSemester: String, get: (List<SelectionItem>) -> Unit) {
+    override suspend fun getDiscipline(
+        courseName: String,
+        currentSemester: String,
+        get: (List<SelectionItem>) -> Unit
+    ) {
         addAverageRemoteDataSource.getDiscipline(courseName, currentSemester, get)
     }
 
@@ -20,5 +24,9 @@ class AddAverageRepositoryImpl(
 
     override suspend fun addStudentNote(addAverage: AddAverage, token: String): FirebaseResponse {
         return addAverageRemoteDataSource.addStudentNote(addAverage, token)
+    }
+
+    override suspend fun updateFinalGrade(token: String, addAverage: AddAverage) {
+        addAverageRemoteDataSource.updateFinalGrade(token, addAverage)
     }
 }

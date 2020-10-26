@@ -59,4 +59,8 @@ class AddAverageRemoteDataSourceImpl(
             }
         }
     }
+
+    override suspend fun updateFinalGrade(token: String, addAverage: AddAverage) {
+        userDao.updateTotalNote(addAverage, token)
+    }
 }

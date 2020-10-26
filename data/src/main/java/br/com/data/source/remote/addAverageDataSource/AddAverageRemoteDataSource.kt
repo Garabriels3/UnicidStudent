@@ -14,4 +14,5 @@ interface AddAverageRemoteDataSource {
 
     suspend fun addStudentNote(addAverage: AddAverage, token: String): FirebaseResponse
     suspend fun getStudentNote(token: String, userNotes: (List<AddAverage>?) -> Unit)
+    suspend fun updateFinalGrade(token: String, addAverage: AddAverage)
 }

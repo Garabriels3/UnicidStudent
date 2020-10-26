@@ -12,7 +12,6 @@ import br.com.unicidapp.ui.optionDialog.OptionDialogFragment
 import br.com.unicidapp.utils.DefaultMasks
 import br.com.unicidapp.utils.base.BaseActivity
 import br.com.unicidapp.utils.extensions.*
-import kotlinx.android.synthetic.main.activity_add_average.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddAverageActivity : BaseActivity() {
@@ -26,10 +25,9 @@ class AddAverageActivity : BaseActivity() {
         setupMask()
 
         (intent.extras?.getSerializable(EXTRA_AVERAGE) as? AddAverage)?.let {
-            binding.tietCourse.apply {
-                setText(it.discipline)
-                isEnabled = false
-            }
+            binding.tietCourse.isEnabled = false
+            binding.disciplineName = it.discipline
+
             binding.etA1.apply {
                 setText(it.a1)
                 isEnabled = false
@@ -38,9 +36,37 @@ class AddAverageActivity : BaseActivity() {
                 setText(it.a2)
                 isEnabled = false
             }
-            if (it.afState == true) {
-                binding.etAf.shouldShowView(true)
+
+            when {
+                it.afState == true -> {
+                    binding.etAf.shouldShowView(true)
+                    binding.cvShowFinalNote.shouldShowView(false)
+                }
+                it.reproveState == true -> {
+                    binding.etAf.apply {
+                        shouldShowView(true)
+                        setText(it.afNote)
+                        isEnabled = false
+                    }
+                    binding.cvShowFinalNote.shouldShowView(true)
+                    binding.cvShowFinalNote.setBackgroundResource(R.drawable.shape_round_corners_red_solid)
+                    binding.tvFinalNote.text = it.totalNote
+                    binding.tvFinalNote.setTextColor(resources.getColor(R.color.red))
+                    binding.tvState.text = REPROVE
+                    binding.tvState.setTextColor(resources.getColor(R.color.red))
+                }
+                it.approveState == true -> {
+                    binding.cvShowFinalNote.shouldShowView(true)
+                    binding.cvShowFinalNote.setBackgroundResource(R.drawable.shape_round_corners)
+                    binding.tvFinalNote.text = it.totalNote
+                    binding.tvFinalNote.setTextColor(resources.getColor(R.color.cerulean))
+                    binding.tvState.text = APPROVE
+                    binding.tvState.setTextColor(resources.getColor(R.color.cerulean))
+                }
             }
+
+            viewModel.calculateHighestGrade(it)
+            binding.addAverageModel = it
         }
     }
 
@@ -67,12 +93,19 @@ class AddAverageActivity : BaseActivity() {
     }
 
     private fun shouldEnableSignInButton(enable: Boolean) {
-        binding.btLogin.isEnabled = enable
+        binding.btSaveNote.isEnabled = enable
+        binding.btSaveAf.isEnabled = enable
         applyButtonLoginBackground(enable)
     }
 
     private fun applyButtonLoginBackground(enable: Boolean) {
-        binding.btLogin.isEnabled(
+        binding.btSaveNote.isEnabled(
+            enable,
+            R.drawable.circle_green_button,
+            R.drawable.circle_shape_gray
+        )
+
+        binding.btSaveAf.isEnabled(
             enable,
             R.drawable.circle_green_button,
             R.drawable.circle_shape_gray
@@ -89,6 +122,12 @@ class AddAverageActivity : BaseActivity() {
         binding.etA2.addTextChangedListener(
             DefaultMasks.insert(
                 binding.etA2,
+                DefaultMasks.DECIMAL_MASK
+            )
+        )
+        binding.etAf.addTextChangedListener(
+            DefaultMasks.insert(
+                binding.etAf,
                 DefaultMasks.DECIMAL_MASK
             )
         )
@@ -110,6 +149,8 @@ class AddAverageActivity : BaseActivity() {
     companion object {
         private const val EMPTY_TEXT = ""
         private const val EXTRA_AVERAGE = "extra_average"
+        private const val REPROVE = "Reprovado!"
+        private const val APPROVE = "Aprovado!"
 
         fun start(activity: Activity?, requestCode: Int, addAverageDetails: AddAverage? = null) {
             val intent = Intent(activity, AddAverageActivity::class.java).apply {

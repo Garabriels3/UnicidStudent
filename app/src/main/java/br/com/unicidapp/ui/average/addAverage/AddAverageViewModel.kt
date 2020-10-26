@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.OnLifecycleEvent
+import br.com.domain.entity.AddAverage
 import br.com.domain.entity.FirebaseResponse
 import br.com.domain.entity.SelectionItem
 import br.com.domain.storange.Cache
@@ -99,8 +100,34 @@ class AddAverageViewModel(
         addAverageForm.isApprove = total >= 6.0F
     }
 
-    private fun calculateAfNote() {
+    fun calculateHighestGrade(addAverage: AddAverage) {
+        addAverageForm.addAverage = addAverage
+        val a1 = addAverage.a1?.toFloat() ?: 0F
+        val a2 = addAverage.a2?.toFloat() ?: 0F
+        val noteList = listOf(a1, a2)
+        addAverageForm.highestNote = noteList.maxBy { it } ?: 0F
+    }
 
+    fun onUpdateInfo() {
+        launch(baseLoading) {
+            cache.getString(ID_KEY, "")?.let {
+                calculateAfNote()
+                addAverageUseCase.updateFinalGrade(it, addAverageForm.buildUpdate())
+            }
+        }
+    }
+
+    private fun calculateAfNote() {
+        val totalAfNote = addAverageForm.af.toFloat() + addAverageForm.highestNote
+        addAverageForm.totalNote = totalAfNote.toString()
+
+        if (totalAfNote < 6) {
+            addAverageForm.isReprove = true
+            addAverageForm.isAf = false
+        } else {
+            addAverageForm.isApprove = true
+            addAverageForm.isAf = false
+        }
     }
 
     private fun FirebaseResponse.handleAddStudentResultResult() {

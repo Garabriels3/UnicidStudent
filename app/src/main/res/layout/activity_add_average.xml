@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="addAverageModel"
+            type="br.com.domain.entity.AddAverage" />
+
         <variable
             name="disciplineName"
             type="String" />
@@ -128,8 +134,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_a2" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cv_show_final_note"
+            android:layout_width="@dimen/two_hundred_twenty_eight_value"
+            android:layout_height="@dimen/hundred_sixty_four_value"
+            android:layout_marginTop="@dimen/forty_value"
+            android:background="@drawable/shape_round_corners_red_solid"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_af">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_final_note"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty_eight_value"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/fifty_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10"
+                tools:textColor="@color/red" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_state"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/thirty_two_value"
+                android:fontFamily="@font/poppins_extra_light"
+                android:textAlignment="center"
+                android:textSize="@dimen/twenty_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_final_note"
+                tools:text="Reprovado"
+                tools:textColor="@color/red" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_login"
+            android:id="@+id/bt_save_note"
             android:layout_width="@dimen/zero_value"
             android:layout_height="@dimen/sixty_value"
             android:layout_marginStart="@dimen/fifty_two_value"
@@ -141,6 +188,26 @@
             android:textAppearance="@style/PoppinsSemiBoldAppearance"
             android:textColor="@color/white"
             android:textSize="@dimen/twenty_size"
+            android:visibility="@{addAverageModel.afState ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:fontFamily="@font/poppins_medium" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_save_af"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="@dimen/sixty_value"
+            android:layout_marginStart="@dimen/fifty_two_value"
+            android:layout_marginEnd="@dimen/fifty_two_value"
+            android:layout_marginBottom="@dimen/thirty_two_value"
+            android:background="@drawable/circle_gray_button"
+            android:onClick="@{() -> viewModel.onUpdateInfo()}"
+            android:text="@string/save_button_label"
+            android:textAppearance="@style/PoppinsSemiBoldAppearance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty_size"
+            android:visibility="@{addAverageModel.afState ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

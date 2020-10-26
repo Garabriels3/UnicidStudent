@@ -39,6 +39,28 @@ class UserDao : BaseFirestoreDao<User>() {
             }
     }
 
+    fun updateTotalNote(addAverage: AddAverage, token: String) {
+        addAverage.id?.let {
+            try {
+                collection().document(token).collection("notes").document(it)
+                    .update(
+                        "totalNote",
+                        addAverage.totalNote,
+                        "approveState",
+                        addAverage.approveState,
+                        "reproveState",
+                        addAverage.reproveState,
+                        "afState",
+                        addAverage.afState,
+                        "afNote",
+                        addAverage.afNote
+                    )
+            } catch (e: FirebaseFirestoreException) {
+                Log.w(javaClass.name, e.message, e)
+            }
+        }
+    }
+
     fun getStudentNote(token: String): Query {
         return collection().document(token).collection("notes")
     }

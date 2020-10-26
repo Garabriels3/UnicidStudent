@@ -28,4 +28,8 @@ class AddAverageUseCaseImpl(
     override suspend fun addStudentNote(addAverage: AddAverage, token: String): FirebaseResponse {
         return addAverageRepository.addStudentNote(addAverage, token)
     }
+
+    override suspend fun updateFinalGrade(token: String, addAverage: AddAverage) {
+        addAverageRepository.updateFinalGrade(token, addAverage)
+    }
 }

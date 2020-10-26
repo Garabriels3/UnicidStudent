@@ -17,4 +17,5 @@ interface AddAverageUseCase {
     )
 
     suspend fun addStudentNote(addAverage: AddAverage, token: String): FirebaseResponse
+    suspend fun updateFinalGrade(token: String, addAverage: AddAverage)
 }

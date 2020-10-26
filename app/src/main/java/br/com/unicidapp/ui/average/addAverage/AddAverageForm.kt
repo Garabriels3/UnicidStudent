@@ -7,13 +7,15 @@ class AddAverageForm {
     var a1: String = ""
     var a2: String = ""
     var totalNote: String = ""
+    var highestNote: Float = 0F
     var discipline: String = ""
     var semester: String = ""
     var courseName: String = ""
     var af: String = ""
-    var isAf: Boolean? = null
-    var isReprove: Boolean? = null
-    var isApprove: Boolean? = null
+    var isAf: Boolean? = false
+    var isReprove: Boolean? = false
+    var isApprove: Boolean? = false
+    var addAverage: AddAverage? = null
 
     private fun firstNoteIsValid(): Boolean = a1.isNotEmpty()
 
@@ -37,6 +39,17 @@ class AddAverageForm {
             approveState = isApprove,
             reproveState = isReprove,
             afNote = af
+        )
+    }
+
+    fun buildUpdate(): AddAverage {
+        return AddAverage(
+            id = addAverage?.id,
+            afState = isAf,
+            approveState = isApprove,
+            reproveState = isReprove,
+            afNote = af,
+            totalNote = totalNote
         )
     }
 }

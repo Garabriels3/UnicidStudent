@@ -14,6 +14,7 @@ class FirebaseAuth {
         return try {
             val user =
                 auth.createUserWithEmailAndPassword(email, password).await().user?.uid
+            auth.currentUser?.sendEmailVerification()
             FirebaseResponse(userUid = user)
         } catch (e: FirebaseAuthException) {
             FirebaseResponse(errorMessage = e.message)

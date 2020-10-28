@@ -44,7 +44,9 @@ class AddAverageViewModel(
                 addAverageForm.semester = it
             }
             addAverageUseCase.getDiscipline(addAverageForm.courseName, addAverageForm.semester) {
-                _listDisciplineNameOptions.value = it
+                it?.let {
+                    _listDisciplineNameOptions.value = it
+                }
             }
         }
     }
@@ -108,6 +110,7 @@ class AddAverageViewModel(
     }
 
     fun onUpdateInfo() {
+        _finishActivity.trigger()
         launch(baseLoading) {
             cache.getString(ID_KEY, "")?.let {
                 calculateAfNote()

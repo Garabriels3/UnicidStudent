@@ -8,7 +8,7 @@ interface AddAverageUseCase {
     suspend fun getDiscipline(
         courseName: String,
         currentSemester: String,
-        get: (List<SelectionItem>) -> Unit
+        get: (List<SelectionItem>?) -> Unit
     )
 
     suspend fun getStudentNote(

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Whisper"
+        tools:context=".ui.construction.ConstructionActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_left_arrow_black"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_construction"
+            android:layout_width="@dimen/three_hundred_value"
+            android:layout_height="@dimen/two_hundred_twenty_eight_value"
+            android:layout_marginTop="@dimen/two_hundred_four_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_on_construction" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty_four_value"
+            android:text="@string/in_construction_label"
+            android:textAlignment="center"
+            android:textAppearance="@style/PoppinsSemiBoldAppearance"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty_four_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_construction"
+            tools:fontFamily="@font/poppins_semi_bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_sub_title"
+            android:layout_width="@dimen/zero_value"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixty_value"
+            android:layout_marginEnd="@dimen/sixty_value"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/in_construction_orientation_label"
+            android:textAlignment="center"
+            android:textAppearance="@style/PoppinsSemiBoldAppearance"
+            android:textColor="@color/scorpion"
+            android:textSize="@dimen/eighteen_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

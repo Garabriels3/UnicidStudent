@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.unicidapp.ui.register.RegisterViewModel" />
+
+        <variable
+            name="courseName"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_unicid"
+        tools:context=".ui.register.RegisterActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/sixteen_value"
+            android:layout_marginTop="@dimen/twenty_four_value"
+            android:layout_marginEnd="@dimen/sixteen_value"
+            android:layout_marginBottom="@dimen/twenty_four_value"
+            android:background="@drawable/shape_card_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.dismissKeyboard()}"
+            android:paddingStart="@dimen/sixteen_value"
+            android:paddingEnd="@dimen/sixteen_value"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_left_arrow_black"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_email"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/fifty_two_size"
+                android:layout_marginTop="@dimen/hundred_four_value"
+                android:background="@drawable/shape_round_corners"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLines="1"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onEmailChanged(text)}"
+                android:padding="@dimen/sixteen_value"
+                android:textColor="@color/blue_unicid"
+                android:textColorHint="@color/blue_unicid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_name"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/fifty_two_size"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:background="@drawable/shape_round_corners"
+                android:hint="@string/hint_name"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onNameChanged(text)}"
+                android:padding="@dimen/sixteen_value"
+                android:textColor="@color/blue_unicid"
+                android:textColorHint="@color/blue_unicid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_email" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_password"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/fifty_two_size"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:autofillHints=""
+                android:background="@drawable/shape_round_corners"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onPasswordChanged(text)}"
+                android:padding="@dimen/sixteen_value"
+                android:textColor="@color/blue_unicid"
+                android:textColorHint="@color/blue_unicid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_rgm"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/fifty_two_size"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:background="@drawable/shape_round_corners"
+                android:hint="@string/hint_rgm"
+                android:inputType="number"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onRgmChanged(text)}"
+                android:padding="@dimen/sixteen_value"
+                android:textColor="@color/blue_unicid"
+                android:textColorHint="@color/blue_unicid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_course"
+                style="@style/AppTheme.TextInput"
+                android:layout_width="@dimen/zero_value"
+                android:layout_marginTop="@dimen/sixteen_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_rgm">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_course"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_value"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/course_selected"
+                    android:inputType="text"
+                    android:onClick="@{() -> viewModel.openCourseNameSheet()}"
+                    android:textColor="@color/blue_unicid"
+                    android:textColorHint="@color/blue_unicid"
+                    android:theme="@style/MyTheme.EditText"
+                    app:drawableEndCompat="@drawable/ic_dropdown"
+                    tools:fontFamily="@font/poppins_regular"
+                    android:text="@{courseName}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_semester"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/fifty_two_size"
+                android:layout_marginTop="@dimen/sixteen_value"
+                android:background="@drawable/shape_round_corners"
+                android:hint="@string/hint_semester"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onSemesterChanged(text)}"
+                android:padding="@dimen/sixteen_value"
+                android:textColor="@color/blue_unicid"
+                android:textColorHint="@color/blue_unicid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_course" />
+
+            <Button
+                android:id="@+id/bt_register"
+                android:layout_width="@dimen/zero_value"
+                android:layout_height="@dimen/fifty_two_size"
+                android:layout_marginStart="@dimen/fifty_two_value"
+                android:layout_marginTop="@dimen/sixty_value"
+                android:layout_marginEnd="@dimen/fifty_two_value"
+                android:background="@drawable/circle_green_button"
+                android:enabled="false"
+                android:fontFamily="@font/poppins_medium"
+                android:onClick="@{() -> viewModel.createAccount()}"
+                android:text="@string/finish_button"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_semester" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/b_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="v_barrier, v_barrier" />
+
+            <View
+                android:id="@+id/v_barrier"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forty_value"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_register" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

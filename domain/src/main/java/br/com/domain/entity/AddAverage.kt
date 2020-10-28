@@ -13,3 +13,4 @@ data class AddAverage(
     val reproveState: Boolean? = false,
     val approveState: Boolean? = false
 ) : Serializable
+

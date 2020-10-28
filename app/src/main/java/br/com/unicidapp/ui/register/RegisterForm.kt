@@ -1,6 +1,7 @@
 package br.com.unicidapp.ui.register
 
 import br.com.domain.entity.User
+import br.com.domain.utils.RegexUtil.EMAIL_REGEX
 
 class RegisterForm {
 
@@ -17,7 +18,7 @@ class RegisterForm {
     }
 
     private fun emailIsValid(): Boolean {
-        return (email.isNotEmpty())
+        return (email.isNotEmpty()) && EMAIL_REGEX.matches(email)
     }
 
     private fun passwordIsValid(): Boolean {

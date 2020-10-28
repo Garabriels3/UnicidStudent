@@ -21,14 +21,12 @@ class HomeViewModel(
     val boletimClick: LiveData<Boolean> get() = _boletimClick
     val contactClick: LiveData<Boolean> get() = _contactClick
     val newsClick: LiveData<Boolean> get() = _newsClick
-    val onConstructionClick: LiveData<Boolean> get() = _onConstructionClick
     val userInfo: LiveData<User> get() = _userInfo
     val isSignOut: LiveData<Boolean> get() = _isSignOut
 
     private val _boletimClick: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _contactClick: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _newsClick: FlexibleLiveData<Boolean> = FlexibleLiveData()
-    private val _onConstructionClick: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _userInfo: FlexibleLiveData<User> = FlexibleLiveData()
     private val _isSignOut: FlexibleLiveData<Boolean> = FlexibleLiveData()
     private val _localMenuOptions: FlexibleLiveData<List<HomeMenu>> = FlexibleLiveData.default(
@@ -69,7 +67,6 @@ class HomeViewModel(
             BOLETIM_LABEL -> _boletimClick.trigger()
             CONTACT_LABEL -> _contactClick.trigger()
             NEWS_LABEL -> _newsClick.trigger()
-            else -> _onConstructionClick.trigger()
         }
     }
 

@@ -31,7 +31,7 @@ class LoginViewModel(
     private var loginForm = LoginForm()
 
     fun onUsernameTextChanged(text: CharSequence) {
-        loginForm.userName = text.toString()
+        loginForm.email = text.toString()
         _enableDrawableFieldUserName.value = loginForm.shouldChangeDrawableBorderFieldUserName()
         _enableLogInButton.value = loginForm.shouldEnableSigInButton()
     }
@@ -45,7 +45,7 @@ class LoginViewModel(
     fun loginAccount() {
         dismissKeyboard()
         launch(baseLoading) {
-            val result = loginUseCase.loginAccount(loginForm.userName, loginForm.password)
+            val result = loginUseCase.loginAccount(loginForm.email, loginForm.password)
             if (result.isSuccess()) {
                 getInfo(result.userUid)
                 _goToHome.trigger()

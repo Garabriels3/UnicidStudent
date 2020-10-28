@@ -304,8 +304,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_icon_app" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../icon_app.svg" />
+                            <entry key="outputName" value="ic_on_construction" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../on_construction.svg" />
                           </map>
                         </option>
                       </PersistentState>

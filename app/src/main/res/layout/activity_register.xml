@@ -146,7 +146,7 @@
                     android:theme="@style/MyTheme.EditText"
                     app:drawableEndCompat="@drawable/ic_dropdown"
                     tools:fontFamily="@font/poppins_regular"
-                    tools:text="@{courseName}" />
+                    android:text="@{courseName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatEditText

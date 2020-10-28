@@ -17,7 +17,6 @@ abstract class BaseActivity : AppCompatActivity() {
         subscribeUi()
     }
 
-    /** Setup de views que nao dependem de ViewModels*/
     abstract fun setupScreen()
 
     /** LiveDatas*/

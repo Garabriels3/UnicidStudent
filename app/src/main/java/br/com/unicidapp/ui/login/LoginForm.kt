@@ -1,13 +1,14 @@
 package br.com.unicidapp.ui.login
 
+import br.com.domain.utils.RegexUtil.EMAIL_REGEX
+
 class LoginForm {
 
-    var userName: String = ""
+    var email: String = ""
     var password: String = ""
-    var token: String? = ""
 
     private fun userNameIsValid(): Boolean {
-        return (userName.isNotEmpty())
+        return (email.isNotEmpty()) && EMAIL_REGEX.matches(email)
     }
 
     private fun passwordIsValid(): Boolean {

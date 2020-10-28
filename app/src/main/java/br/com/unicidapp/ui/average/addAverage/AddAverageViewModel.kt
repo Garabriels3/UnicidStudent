@@ -20,7 +20,6 @@ class AddAverageViewModel(
 ) : BaseViewModel() {
 
     val openDisciplineNameSheet: LiveData<List<SelectionItem>> get() = _openDisciplineNameSheet
-    val listDisciplineNameOptions: LiveData<List<SelectionItem>> get() = _listDisciplineNameOptions
     val enableSaveButton: LiveData<Boolean> get() = _enableSaveButton
     val finishActivity: LiveData<Boolean> get() = _finishActivity
 

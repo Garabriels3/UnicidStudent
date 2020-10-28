@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import br.com.domain.entity.User
 import br.com.unicidapp.R
 import br.com.unicidapp.databinding.ActivityHomeBinding
+import br.com.unicidapp.ui.construction.ConstructionActivity
 import br.com.unicidapp.ui.average.AverageActivity
 import br.com.unicidapp.ui.login.LoginActivity
 import br.com.unicidapp.utils.base.BaseActivity
@@ -30,8 +31,7 @@ class HomeActivity : BaseActivity() {
         moveTaskToBack(false)
     }
 
-    override fun setupScreen() {
-    }
+    override fun setupScreen() {}
 
     override fun subscribeUi() {
         bind(viewModel.localMenuOptions, adapter::submitList)
@@ -39,6 +39,8 @@ class HomeActivity : BaseActivity() {
         bind(viewModel.userInfo, ::setUserName)
         bind(viewModel.isSignOut) { if (it) LoginActivity.start(this) }
         bind(viewModel.loading, ::setupShimmers)
+        bind(viewModel.newsClick) { if (it) ConstructionActivity.start(this) }
+        bind(viewModel.contactClick) { if (it) ConstructionActivity.start(this) }
     }
 
     private fun setupAdapter() {
